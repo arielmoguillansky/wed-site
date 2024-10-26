@@ -9,6 +9,7 @@ export default function Home() {
         src={"/images/under-construction.jpeg"}
         alt="Construction image"
         fill
+        priority
         style={{ objectFit: "cover" }}
       />
       <div className="z-10 flex justify-center w-full py-2 bg-white">
