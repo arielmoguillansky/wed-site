@@ -1,10 +1,23 @@
-const { i18nRouter } = require("next-i18n-router");
-const i18nConfig = require("./i18nConfig");
+import { NextResponse } from "next/server";
 
-export function middleware(request) {
-  return i18nRouter(request, i18nConfig);
+const PUBLIC_FILE = /\.(.*)$/;
+
+export async function middleware(req) {
+  if (
+    req.nextUrl.pathname.startsWith("/_next") ||
+    req.nextUrl.pathname.includes("/api/") ||
+    PUBLIC_FILE.test(req.nextUrl.pathname)
+  ) {
+    return;
+  }
+
+  const locale = req.cookies.get("NEXT_LOCALE")?.value || "es";
+
+  if (req.nextUrl.locale === "default") {
+    const locale = req.cookies.get("NEXT_LOCALE")?.value || "es";
+
+    return NextResponse.redirect(
+      new URL(`/${locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
+    );
+  }
 }
-
-export const config = {
-  matcher: "/((?!api|static.*\\..*|_next).*)",
-};
