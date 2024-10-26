@@ -11,13 +11,14 @@ export async function middleware(req) {
     return;
   }
 
-  const locale = req.cookies.get("NEXT_LOCALE")?.value || "es";
+  const localeLang = req.cookies.get("NEXT_LOCALE")?.value || "es";
 
-  if (req.nextUrl.locale === "default") {
-    const locale = req.cookies.get("NEXT_LOCALE")?.value || "es";
-
+  if (localeLang || req.nextUrl.locale === "default") {
     return NextResponse.redirect(
-      new URL(`/${locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
+      new URL(
+        `/${localeLang}${req.nextUrl.pathname}${req.nextUrl.search}`,
+        req.url
+      )
     );
   }
 }
