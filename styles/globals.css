@@ -14,8 +14,21 @@
   }
 }
 
+@font-face {
+  font-family: "AphroditeText";
+  src: url("../public/fonts/aphrodite/AphroditeText.woff2") format("woff2"),
+    url("../public/fonts/aphrodite/AphroditeText.woff") format("woff"),
+    url("../public/fonts/aphrodite/AphroditeText.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "JosefinSanslight";
+  src: url("../public/fonts/josefin-sans/JosefinSans-Light.ttf")
+    format("truetype");
+}
+
 body {
   color: black;
   background: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: AphroditeText, Helvetica, sans-serif;
 }

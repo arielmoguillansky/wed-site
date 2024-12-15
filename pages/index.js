@@ -1,21 +1,71 @@
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { useTranslations } from "use-intl";
 
 export default function Home() {
   const t = useTranslations("HomePage");
+  const targetDate = "2025-02-15T23:59:59";
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  function calculateTimeLeft() {
+    const difference = new Date(targetDate) - new Date();
+    if (difference <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / (1000 * 60)) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    };
+  }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [targetDate]);
+
+  const formatTime = (time) => (time < 10 ? `0${time}` : time);
+
   return (
     <main className="relative flex items-center justify-center w-screen h-screen pb-12">
-      <Image
+      {/* <Image
         src={"/images/under-construction.jpeg"}
         alt="Construction image"
         fill
         priority
         style={{ objectFit: "cover" }}
-      />
-      <div className="z-10 flex justify-center w-full py-2 bg-white">
-        <span className="text-[24px] md:text-[48px] z-10 uppercase">
-          {t("underConstruction")}
-        </span>
+      /> */}
+      <div className="z-10 w-full py-2 bg-white">
+        <p className="text-[24px] md:text-[48px] z-10 text-center mb-8">
+          El tiempo vuela cuando preparas algo especial.
+        </p>
+        <p className="text-[24px] md:text-[32px] z-10 text-center font-sans">
+          El sitio estará listo en
+        </p>
+        <div className="flex justify-center mx-auto w-fit gap-x-4 mb-14">
+          <div className="flex flex-col items-center justify-center gap-y-2">
+            <p className="text-[42px]">{formatTime(timeLeft.days)}</p>
+            <p className="text-[16px] font-sans uppercase">días</p>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-y-2">
+            <p className="text-[42px]">{formatTime(timeLeft.hours)}</p>
+            <p className="text-[16px] font-sans uppercase">horas</p>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-y-2">
+            <p className="text-[42px]">{formatTime(timeLeft.minutes)}</p>
+            <p className="text-[16px] font-sans uppercase">minutos</p>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-y-2">
+            <p className="text-[42px]">{formatTime(timeLeft.seconds)}</p>
+            <p className="text-[16px] font-sans uppercase">segundos</p>
+          </div>
+        </div>
+        <div className="text-[32px] m-auto w-fit">Laura y Ariel</div>
       </div>
     </main>
   );
