@@ -12,7 +12,8 @@ module.exports = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        sans: ["JosefinSanslight", "Arial", "sans-serif"],
+        sans: ["JosefinSansLight", "Arial", "sans-serif"],
+        medium: ["JosefinSansMedium"],
       },
     },
   },

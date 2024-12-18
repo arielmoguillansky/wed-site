@@ -22,8 +22,14 @@
 }
 
 @font-face {
-  font-family: "JosefinSanslight";
+  font-family: "JosefinSansLight";
   src: url("../public/fonts/josefin-sans/JosefinSans-Light.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "JosefinSansMedium";
+  src: url("../public/fonts/josefin-sans/JosefinSans-Medium.ttf")
     format("truetype");
 }
 
