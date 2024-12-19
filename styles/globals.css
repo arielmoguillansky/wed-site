@@ -37,5 +37,5 @@ body {
   color: black;
   background: white;
   font-family: AphroditeText, Helvetica, sans-serif;
-  @apply bg-[#f8f4ea] text-[#362417];
+  @apply bg-[#f8f5ed] text-[#362417];
 }
