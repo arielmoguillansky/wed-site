@@ -19,6 +19,14 @@ export default function Invitation() {
       name: "Alfredo",
       code: "alfredo-gesell",
     },
+    {
+      name: "Tata",
+      code: "maria-restrepo",
+    },
+    {
+      name: "Tatiana",
+      code: "tatiana-mejia",
+    },
   ];
 
   useEffect(() => {
