@@ -155,6 +155,10 @@ export default function Invitation() {
       name: "Rosamor Ríos",
       code: "rosamor-rios",
     },
+    {
+      name: "Jennifer Arroyave",
+      code: "jennifer-arroyave",
+    },
   ];
 
   useEffect(() => {
@@ -194,10 +198,21 @@ export default function Invitation() {
       </div>
       <div className="flex flex-col items-center justify-center">
         <p className="md:text-[32px] text-[20px] mb-4">Palacio Sans Souci</p>
-        <p className="font-sans text-[18px] md:text-[24px]">
-          Paz 750, Victoria
-        </p>
-        <p className="font-sans text-[18px] md:text-[24px]">Buenos Aires</p>
+      </div>
+      <div className="flex flex-col items-center justify-center gap-y-6">
+        <div className="flex flex-col items-center justify-center">
+          <p className="font-sans">Participación presencial</p>
+          <p className="font-sans text-[18px] md:text-[24px]">
+            Paz 750, Victoria
+          </p>
+          <p className="font-sans text-[18px] md:text-[24px]">Buenos Aires</p>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <p className="font-sans">Participación virtual</p>
+          <a className="font-sans italic underline" href="/">
+            Link a la transmisión del evento
+          </a>
+        </div>
       </div>
       <div className="m-auto font-sans text-center">
         Mas información próximamente en nuestro sitio web.

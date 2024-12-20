@@ -32,7 +32,7 @@ export default function Home() {
   const formatTime = (time) => (time < 10 ? `0${time}` : time);
 
   return (
-    <main className="relative flex items-center justify-center w-screen h-screen pb-12 bg-[#FFFDD0] text-[#4B3D26]">
+    <main className="relative flex items-center justify-center w-screen h-screen pb-12">
       <div className="z-10 w-full py-2">
         <p className="text-[24px] md:text-[48px] z-10 text-center mb-8">
           El tiempo vuela cuando preparas algo especial.
