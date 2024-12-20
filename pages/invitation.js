@@ -191,7 +191,7 @@ export default function Invitation() {
       </div>
       <div className="flex flex-col items-center justify-center gap-y-6 text-[24px] md:text-[48px]">
         <p>Laura Medrano</p>
-        <p className="mb-2 md:mb-12">y</p>
+        <p className="mb-2 md:mb-12">&</p>
         <p>Ariel Moguillansky</p>
       </div>
       <div className="font-sans text-[18px] md:text-[24px] text-center space-y-4">

@@ -57,7 +57,7 @@ export default function Home() {
             <p className="text-[16px] font-sans uppercase">{t("seconds")}</p>
           </div>
         </div>
-        <div className="text-[32px] m-auto w-fit">Laura y Ariel</div>
+        <div className="text-[32px] m-auto w-fit">Laura & Ariel</div>
       </div>
     </main>
   );
