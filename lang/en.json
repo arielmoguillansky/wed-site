@@ -1,5 +1,21 @@
 {
   "HomePage": {
-    "expectationMessage": "Our story wouldn’t be the same without you. Come back on February 15 to be a part of it."
+    "expectationMessage": "Our story wouldn't be the same without you. Come back on February 15th to be a part of it.",
+    "h1": "Time flies when you're preparing something special.",
+    "h2": "The site will be ready in",
+    "days": "days",
+    "hours": "hours",
+    "minutes": "minutes",
+    "seconds": "seconds"
+  },
+  "InvitationPage": {
+    "h1": "For",
+    "h2": "On the day that changes our lives forever, we want you to be with us and join us in celebrating our love and union.",
+    "h3": "Saturday, May 17th, 2025",
+    "h4": "In-person participation",
+    "h5": "Virtual participation",
+    "h6": "Link to the event broadcast",
+    "h7": "More information coming soon on our website.",
+    "h8": "We can't wait to see you!"
   }
 }

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useTranslations } from "use-intl";
 
@@ -35,27 +34,27 @@ export default function Home() {
     <main className="relative flex items-center justify-center w-screen h-screen pb-12">
       <div className="z-10 w-full py-2">
         <p className="text-[24px] md:text-[48px] z-10 text-center mb-8">
-          El tiempo vuela cuando preparas algo especial.
+          {t("h1")}
         </p>
         <p className="text-[24px] md:text-[32px] z-10 text-center font-sans">
-          El sitio estará listo en
+          {t("h2")}
         </p>
         <div className="flex justify-center mx-auto w-fit gap-x-4 mb-14">
           <div className="flex flex-col items-center justify-center gap-y-2">
             <p className="text-[42px]">{formatTime(timeLeft.days)}</p>
-            <p className="text-[16px] font-sans uppercase">días</p>
+            <p className="text-[16px] font-sans uppercase">{t("days")}</p>
           </div>
           <div className="flex flex-col items-center justify-center gap-y-2">
             <p className="text-[42px]">{formatTime(timeLeft.hours)}</p>
-            <p className="text-[16px] font-sans uppercase">horas</p>
+            <p className="text-[16px] font-sans uppercase">{t("hours")}</p>
           </div>
           <div className="flex flex-col items-center justify-center gap-y-2">
             <p className="text-[42px]">{formatTime(timeLeft.minutes)}</p>
-            <p className="text-[16px] font-sans uppercase">minutos</p>
+            <p className="text-[16px] font-sans uppercase">{t("minutes")}</p>
           </div>
           <div className="flex flex-col items-center justify-center gap-y-2">
             <p className="text-[42px]">{formatTime(timeLeft.seconds)}</p>
-            <p className="text-[16px] font-sans uppercase">segundos</p>
+            <p className="text-[16px] font-sans uppercase">{t("seconds")}</p>
           </div>
         </div>
         <div className="text-[32px] m-auto w-fit">Laura y Ariel</div>
