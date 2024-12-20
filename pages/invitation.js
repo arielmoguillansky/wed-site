@@ -20,12 +20,140 @@ export default function Invitation() {
       code: "alfredo-gesell",
     },
     {
-      name: "Tata",
+      name: "María Restrepo",
       code: "maria-restrepo",
     },
     {
-      name: "Tatiana",
+      name: "Tatiana Mejía",
       code: "tatiana-mejia",
+    },
+    {
+      name: "Carlos y Luz Ángela",
+      code: "carlos-luz",
+    },
+    {
+      name: "Esteban",
+      code: "esteban-benalcazar",
+    },
+    {
+      name: "Charles",
+      code: "charles-munoz",
+    },
+    {
+      name: "Alba y Familia",
+      code: "alba-flia",
+    },
+    {
+      name: "Marleni y Familia",
+      code: "marleni-flia",
+    },
+    {
+      name: "Nicole",
+      code: "nicole",
+    },
+    {
+      name: "Gregoria y Familia",
+      code: "gregoria-flia",
+    },
+    {
+      name: "Edilma y Corina Klinger",
+      code: "edilma-klinger",
+    },
+    {
+      name: "Ivan y Beauty Prieto",
+      code: "ivan-beauty",
+    },
+    {
+      name: "Rodryceth y Claudia",
+      code: "rodryceth-claudia",
+    },
+    {
+      name: "Sindy y Mario",
+      code: "sindy-mario",
+    },
+    {
+      name: "Polo Hernán y Familia",
+      code: "polo-hernan-flia",
+    },
+    {
+      name: "Marnin Medrano",
+      code: "marnin-medrano",
+    },
+    {
+      name: "Mayra Medrano",
+      code: "mayra-medrano",
+    },
+    {
+      name: "Matilde Mesa",
+      code: "matilde-mesa",
+    },
+    {
+      name: "Julio Edgar",
+      code: "julio-edgar",
+    },
+    {
+      name: "Carmen Eliza y Familia",
+      code: "carmen-flia",
+    },
+    {
+      name: "Floralba Ríos",
+      code: "floralba-rios",
+    },
+    {
+      name: "Ibeth Yesenia Ríos",
+      code: "ibeth-yesenia",
+    },
+    {
+      name: "Martha Rentería y Familia",
+      code: "martha-renteria",
+    },
+    {
+      name: "Luisa Marquinez",
+      code: "luisa-marquinez",
+    },
+    {
+      name: "Familia Medrano",
+      code: "familia-medrano",
+    },
+    {
+      name: "Kelly Polo",
+      code: "kelly-polo",
+    },
+    {
+      name: "Stephanie Prieto",
+      code: "tef-prieto",
+    },
+    {
+      name: "Diana Viera",
+      code: "diana-viera",
+    },
+    {
+      name: "Chloe Chang",
+      code: "chloe-chang",
+    },
+    {
+      name: "Daniel Guzmán",
+      code: "daniel-guzman",
+    },
+    {
+      name: "Biunis Becerra",
+      code: "biunis-becerra",
+    },
+    {
+      name: "Liliana Arizmendy",
+      code: "liliana-arizmendy",
+    },
+    {
+      name: "Rita Palacio y Familia",
+      code: "rita-palacio-flia",
+    },
+    {
+      name: "Yorladys Perez",
+      code: "yorladys-perez",
+    },
+    {
+      name: "Rosamor Ríos",
+      code: "rosamor-rios",
     },
   ];
 
