@@ -211,7 +211,7 @@ export default function Invitation() {
         </div>
         <div className="flex flex-col items-center justify-center">
           <p className="font-sans">{t("h5")}</p>
-          <div className="font-sans italic">{t("h6")}</div>
+          <div className="font-sans italic text-center">{t("h6")}</div>
         </div>
       </div>
       <div className="m-auto font-sans text-center">{t("h7")}</div>
