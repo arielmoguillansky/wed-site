@@ -14,7 +14,7 @@ export async function middleware(req) {
 
   // Enforce default locale
   const defaultLocale = "es"; // your desired default locale
-  if (!req.nextUrl.locale || req.nextUrl.locale === "default") {
+  if (!req.nextUrl.locale) {
     return NextResponse.redirect(
       new URL(
         `/${defaultLocale}${req.nextUrl.pathname}${req.nextUrl.search}`,
