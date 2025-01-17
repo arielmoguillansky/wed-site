@@ -3,4 +3,7 @@ module.exports = {
     locales: ["es", "en"],
     defaultLocale: "es",
   },
+  images: {
+    remotePatterns: [{ hostname: "res.cloudinary.com" }],
+  },
 };

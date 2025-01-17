@@ -8,8 +8,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        navy: "#594435",
+        terra: "#c78665",
+        "terra-100": "#e6cabb",
+        pearl: "#dedee1",
+        gray: "#818491",
+        softBlue: "#eaf1f4",
+      },
+      fontFamily: {
+        sansLight: ["josefinSansLight"],
+        sansLightItalic: ["josefinSansLightItalic"],
+        sans: ["josefinSansRegular"],
+        sansMed: ["josefinSansMedium"],
+        sansBold: ["josefinSansBold"],
+        serif: ["aphroditeSlim"],
       },
     },
   },
