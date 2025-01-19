@@ -21,7 +21,7 @@ module.exports = {
         sans: ["josefinSansRegular"],
         sansMed: ["josefinSansMedium"],
         sansBold: ["josefinSansBold"],
-        serif: ["aphroditeSlim"],
+        serif: ["AphroditeText"],
       },
     },
   },

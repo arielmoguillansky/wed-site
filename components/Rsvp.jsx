@@ -26,8 +26,18 @@ export const Rsvp = () => {
   };
 
   const handleSubmission = () => {
-    console.log("SUBMIT", rsvpPayload);
-    setSubmission(true);
+    fetch("/api/form/rsvpForm", {
+      method: "POST",
+      body: JSON.stringify({
+        106: rsvpPayload.firstName,
+        107: rsvpPayload.lastName,
+        104: rsvpPayload.email,
+        108: rsvpPayload.willAttend ? "Si" : "No",
+        109: rsvpPayload.restrictions,
+      }),
+    })
+      .then(() => setSubmission(true))
+      .catch((err) => console.error(err));
   };
   return (
     <section id="rsvp" className="flex justify-center">
@@ -40,6 +50,11 @@ export const Rsvp = () => {
           <p>
             Recorá que tenes tiempo hasta el <b>30 de Abril</b> para confirmar
             tu asistencia a nuestra boda.
+          </p>
+          <br />
+          <p>
+            En caso de grupo familiar, cada integrante invitado deberá confirmar
+            su asistencia.
           </p>
         </div>
         <div className="space-y-6">
@@ -69,8 +84,10 @@ export const Rsvp = () => {
       <div className="flex-1 p-[100px] w-1/2 flex justify-center items-center">
         <div className="max-w-[400px]">
           {sbumission ? (
-            <div className="uppercase text-terra">
-              Gracias por confirmar tu asistencia!
+            <div className="leading-normal uppercase text-terra">
+              {rsvpPayload.willAttend
+                ? "Gracias por confirmar tu asistencia, te esperamos!"
+                : `Lamentamos que no puedas asistir. De todas formas, recordá que podrás conectarte a la transmisión del evento!`}
             </div>
           ) : (
             <div className="space-y-14 gap-y-4">
@@ -110,24 +127,24 @@ export const Rsvp = () => {
                 </label>
                 <div className="flex w-full gap-x-4">
                   <div
-                    className={`w-1/2 p-4 bg-white border-4 cursor-pointer font-sansLight ${
+                    className={`w-1/2 p-4 bg-white border-4 cursor-pointer font-sansLight flex justify-center items-center ${
                       rsvpPayload.willAttend !== null && rsvpPayload.willAttend
                         ? "border-terra"
                         : "border-white"
                     }`}
                     onClick={() => handleAssistance(true)}
                   >
-                    Con alegría confirmo!
+                    Ahí estaré!
                   </div>
                   <div
-                    className={`w-1/2 p-4 bg-white border-4 cursor-pointer font-sansLight ${
+                    className={`w-1/2 p-4 bg-white border-4 cursor-pointer font-sansLight flex justify-center items-center ${
                       rsvpPayload.willAttend !== null && !rsvpPayload.willAttend
                         ? "border-terra"
                         : "border-white"
                     }`}
                     onClick={() => handleAssistance(false)}
                   >
-                    Con tristeza declino.
+                    No podré asistir
                   </div>
                 </div>
               </div>

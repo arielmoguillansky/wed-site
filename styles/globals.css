@@ -3,43 +3,43 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "aphroditeSlim";
-  src: url("../pages/fonts/aphrodite-slim/Aphrodite Slim Contextual.ttf")
-    format("truetype");
+  font-family: "AphroditeText";
+    src: url("../public/fonts/aphrodite/AphroditeText.woff2") format("woff2"),
+      url("../public/fonts/aphrodite/AphroditeText.woff") format("woff"),
+      url("../public/fonts/aphrodite/AphroditeText.ttf") format("truetype");
 }
-
 @font-face {
   font-family: "josefinSansLight";
-  src: url("../pages/fonts/josefin-sans/JosefinSans-Light.ttf")
+  src: url("../public/fonts/josefin-sans/JosefinSans-Light.ttf")
     format("truetype");
 }
 
 @font-face {
   font-family: "josefinSansLightItalic";
-  src: url("../pages/fonts/josefin-sans/JosefinSans-LightItalic.ttf")
+  src: url("../public/fonts/josefin-sans/JosefinSans-LightItalic.ttf")
     format("truetype");
 }
 
 @font-face {
   font-family: "josefinSansRegular";
-  src: url("../pages/fonts/josefin-sans/JosefinSans-Regular.ttf")
+  src: url("../public/fonts/josefin-sans/JosefinSans-Regular.ttf")
     format("truetype");
 }
 
 @font-face {
   font-family: "josefinSansMedium";
-  src: url("../pages/fonts/josefin-sans/JosefinSans-Medium.ttf")
+  src: url("../public/fonts/josefin-sans/JosefinSans-Medium.ttf")
     format("truetype");
 }
 
 @font-face {
   font-family: "josefinSansBold";
-  src: url("../pages/fonts/josefin-sans/JosefinSans-Bold.ttf")
+  src: url("../public/fonts/josefin-sans/JosefinSans-Bold.ttf")
     format("truetype");
 }
 
 body {
-  @apply text-navy font-sans leading-none;
+  @apply font-sans leading-none text-navy;
 }
 
 p {
@@ -138,4 +138,14 @@ p {
   padding: 32px 28px;
   width: 100%;
   height: 100%;
+}
+
+.dark-overlay::after {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
 }
