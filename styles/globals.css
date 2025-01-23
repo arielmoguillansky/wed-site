@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./customSwiper.css";
 
 @font-face {
   font-family: "AphroditeText";
@@ -39,7 +40,7 @@
 }
 
 body {
-  @apply font-sans leading-none text-navy;
+  @apply font-sans leading-none text-brown;
 }
 
 p {
@@ -121,7 +122,7 @@ p {
 }
 
 .hotel-gallery-overlay {
-  @apply bg-navy bg-opacity-90;
+  @apply bg-brown bg-opacity-90;
   z-index: 50;
   position: fixed;
   inset: 0px;

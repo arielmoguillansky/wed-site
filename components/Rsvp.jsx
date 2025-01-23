@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Rsvp = () => {
   const [rsvpPayload, setRsvpPayload] = useState({
@@ -39,11 +39,12 @@ export const Rsvp = () => {
       .then(() => setSubmission(true))
       .catch((err) => console.error(err));
   };
+
   return (
     <section id="rsvp" className="flex justify-center">
       <div className="flex-1 p-[100px] w-1/2 space-y-6">
         <div>
-          <h2 className="text-navy font-sansLight text-[60px] mb-6">RSVP</h2>
+          <h2 className="text-brown font-sansLight text-[60px] mb-6">RSVP</h2>
           <span className=" text-terra text-[48px] font-sansLightItalic mb-2 block">
             Tu presencia es nuestro mayor regalo
           </span>

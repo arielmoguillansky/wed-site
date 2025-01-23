@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        navy: "#594435",
+        brown: "#594435",
         terra: "#c78665",
         "terra-100": "#e6cabb",
         pearl: "#dedee1",

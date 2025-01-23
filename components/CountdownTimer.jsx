@@ -41,14 +41,14 @@ function CountdownTimer({ deadline, title }) {
       <div className="flex justify-center gap-x-4">
         {Object.entries(timeLeft).map(([unit, value], index, array) => (
           <div
-            className="shadow-[0_1px_10px_0px_rgba(211,222,227,0.7)] w-[240px] h-[200px] flex flex-col justify-center items-center"
+            className="shadow-[0_1px_10px_0px_rgba(211,222,227,0.7)] xl:w-[240px] xl:h-[240px] w-[180px] h-[180px] flex flex-col pt-2 items-center gap-y-4"
             key={unit}
           >
-            <div className="flex text-[100px] text-pearl leading-none">
+            <div className="flex text-[48px] lg:text-[72px] xl:text-[100px] text-pearl leading-normal">
               <p className="font-serif">{Math.floor(value / 10)}</p>
               <p className="font-serif">{value % 10}</p>
             </div>
-            <p className="text-[12px] uppercase font-sansMed">{unit}</p>
+            <p className="lg:text-[12px] uppercase font-sansMed">{unit}</p>
           </div>
         ))}
       </div>
