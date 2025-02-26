@@ -268,41 +268,14 @@ const MGallery = () => {
   );
 };
 
-export default function Home() {
+export default function Home({ weatherData }) {
   const t = useTranslations("HomePage");
-  const [petitionsLeft, setPetitionsLeft] = useLocalStorage(
-    "petitionsLeft",
-    MAX_PETITIONS_PER_DAY
-  );
-  const [weatherData, setWeatherData] = useLocalStorage("weatherData", {});
-  const today = new Date().toISOString().slice(0, 10); // format date YYYY-MM-DD
 
   const [wMood, setWMood] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (petitionsLeft > 0) {
-        const response = await fetch(
-          "https://archive-api.open-meteo.com/v1/era5?latitude=-34.4467052&longitude=-58.5445323&start_date=2021-05-17&end_date=2021-05-17&daily=temperature_2m_max,temperature_2m_min"
-        );
-        const data = await response.json();
-        setWeatherData(data.daily);
-        setPetitionsLeft(petitionsLeft - 1);
-      }
-    };
-
-    fetchData();
-  }, [today]);
 
   return (
     <main className="space-y-40 overflow-x-hidden">
       <section className="relative flex items-center justify-center w-screen h-screen">
-        {/* <Image
-          src="https://res.cloudinary.com/dwinoepzp/image/upload/v1731614905/wed/WhatsApp_Image_2024-11-14_at_17.07.03_dzzl0m.jpg"
-          alt="Picture of the author"
-          fill
-          style={{ objectFit: "cover" }}
-        /> */}
         <div
           className={`absolute h-full w-screen overflow-hidden dark-overlay !z-0`}
         >
@@ -353,7 +326,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative flex items-center justify-center w-screen h-[600px]">
+      {/* <section className="relative flex items-center justify-center w-screen h-[600px]">
         <Image
           src="https://res.cloudinary.com/dwinoepzp/image/upload/v1731614905/wed/WhatsApp_Image_2024-11-14_at_17.07.03_dzzl0m.jpg"
           alt="Picture of the author"
@@ -372,7 +345,7 @@ export default function Home() {
             Recuerdame!
           </button>
         </div>
-      </section>
+      </section> */}
       <section className="max-w-[1300px] mx-auto">
         <h2 className="uppercase md:text-[48px] xl:text-[60px] text-center font-sansLight">
           Cronograma
@@ -606,14 +579,14 @@ export default function Home() {
           <p className="text-brown text-[32px]">
             Mínima{" "}
             <span className="font-sans text-[42px]">
-              {Math.round(weatherData["temperature_2m_min"])}
+              {Math.round(weatherData.daily.temperature_2m_min[0])}
             </span>{" "}
             °C
           </p>
           <p className="text-brown text-[32px]">
             Máxima{" "}
             <span className="font-sans text-[42px]">
-              {Math.round(weatherData["temperature_2m_max"])}
+              {Math.round(weatherData.daily.temperature_2m_max[0])}
             </span>{" "}
             °C
           </p>
@@ -635,9 +608,16 @@ export default function Home() {
 }
 
 export async function getStaticProps(context) {
+  const response = await fetch(
+    "https://archive-api.open-meteo.com/v1/era5?latitude=-34.4467052&longitude=-58.5445323&start_date=2021-05-17&end_date=2021-05-17&daily=temperature_2m_max,temperature_2m_min"
+  );
+  const weatherData = await response.json();
+
   return {
     props: {
+      weatherData,
       messages: (await import(`../lang/${context.locale}.json`)).default,
     },
+    revalidate: 86400,
   };
 }

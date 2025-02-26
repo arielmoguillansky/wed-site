@@ -9,13 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-directions": "^4.3.1",
     "email-misspelled": "^4.3.1",
+    "fs": "^0.0.1-security",
+    "mapbox-gl": "^3.9.3",
     "next": "14.2.16",
     "next-intl": "^3.23.5",
+    "npm": "^11.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-modal": "^3.16.1",
     "react-use": "^17.6.0",
+    "resend": "^4.1.2",
     "swiper": "^11.1.15"
   },
   "devDependencies": {
