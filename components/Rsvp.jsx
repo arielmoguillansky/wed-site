@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { Resend } from "resend";
-import { ConfirmEmailTemplate } from "./EmailTemplate";
 
 export const Rsvp = () => {
   const [rsvpPayload, setRsvpPayload] = useState({
@@ -41,26 +39,14 @@ export const Rsvp = () => {
       .then(() => setSubmission(true))
       .catch((err) => console.error(err));
 
-    const resend = new Resend("re_Zg2c6oVU_HgL6JVFY9iNdfZVcXanZPY17");
-
-    resend.emails.send({
-      from: "Vercel <vercel@resend.dev>",
-      to: "arielmogui92@gmail.com",
-      subject: "Boda Ari y Lau",
-      react: ConfirmEmailTemplate({}),
-    });
-    // fetch("/api/email/confirmationEmail", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     106: rsvpPayload.firstName,
-    //     107: rsvpPayload.lastName,
-    //     104: rsvpPayload.email,
-    //     108: rsvpPayload.willAttend ? "Si" : "No",
-    //     109: rsvpPayload.restrictions,
-    //   }),
-    // })
-    //   .then(() => console.log("EMAIL sent"))
-    //   .catch((err) => console.error(err));
+    fetch("/api/email/confirmationEmail", {
+      method: "POST",
+      body: JSON.stringify({
+        ...rsvpPayload,
+      }),
+    })
+      .then(() => console.log("EMAIL sent"))
+      .catch((err) => console.error(err));
   };
 
   return (

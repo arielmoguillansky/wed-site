@@ -7,7 +7,7 @@ export const ConfirmEmailTemplate = () => {
 
 export const VirtualEmailTemplate = ({ name, url }) => {
   return (
-  <div>
-    <h1>Hi {name}</h1>
+    <div>
+      <h1>Lamentamos</h1>
     </div>
-) }
+  ); }
