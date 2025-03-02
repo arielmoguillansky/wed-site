@@ -1,272 +1,10 @@
 import CountdownTimer from "@/components/CountdownTimer";
+import { MGallery, WGallery } from "@/components/FashionGallery";
 import { Gallery } from "@/components/Gallery";
 import { Rsvp } from "@/components/Rsvp";
-import { isDateInPast } from "@/helpers/helpers";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { useTranslations } from "use-intl";
-import { useLocalStorage } from "react-use";
-
-const MAX_PETITIONS_PER_DAY = 4;
-
-const countdownDate = new Date("2025-05-17T14:30:00");
-const womenCode = [
-  {
-    id: 1,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496873/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.53_1_gonvdg.jpg",
-  },
-  {
-    id: 2,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737572040/wed/moodboard/WhatsApp_Image_2025-01-22_at_11.31.56_hj2n54.jpg",
-  },
-
-  {
-    id: 3,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496873/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.53_hatfuj.jpg",
-  },
-  {
-    id: 4,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496872/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.52_2_ugt4pq.jpg",
-  },
-  {
-    id: 5,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496872/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.52_1_ymbsbw.jpg",
-  },
-  {
-    id: 6,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496872/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.52_hvhr41.jpg",
-  },
-  {
-    id: 7,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496872/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.51_3_nkapgr.jpg",
-  },
-  {
-    id: 8,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496872/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.51_1_f1eiz9.jpg",
-  },
-  {
-    id: 9,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496871/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.51_rfugoy.jpg",
-  },
-  {
-    id: 10,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496872/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.51_2_obrogj.jpg",
-  },
-  {
-    id: 11,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496871/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.50_2_kud2ku.jpg",
-  },
-  {
-    id: 12,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496871/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.50_1_j7uisz.jpg",
-  },
-  {
-    id: 13,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496871/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.50_h0k0y4.jpg",
-  },
-  {
-    id: 14,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496871/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.49_go4pii.jpg",
-  },
-  {
-    id: 15,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496873/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.52_3_zt1uu1.jpg",
-  },
-];
-const menCode = [
-  {
-    id: 1,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496874/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.55_aw7ulv.jpg",
-  },
-  {
-    id: 2,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496874/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.55_1_sewnor.jpg",
-  },
-  {
-    id: 3,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496874/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.54_3_z5uh4k.jpg",
-  },
-  {
-    id: 4,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496874/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.54_2_zo1vzp.jpg",
-  },
-  {
-    id: 5,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496874/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.53_3_phpz3z.jpg",
-  },
-  {
-    id: 6,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496874/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.54_1_mbe9tn.jpg",
-  },
-  {
-    id: 7,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496873/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.54_ksu4z2.jpg",
-  },
-  {
-    id: 8,
-    src: "https://res.cloudinary.com/dwinoepzp/image/upload/v1737496873/wed/moodboard/WhatsApp_Image_2025-01-21_at_11.53.53_2_untzip.jpg",
-  },
-];
-
-const WGallery = () => {
-  const swiperRef = useRef();
-  const [showPrevArrow, setShowPrevArrow] = useState(true);
-  const [showNextArrow, setShowNextArrow] = useState(true);
-  useEffect(() => {
-    const swiper = swiperRef.current;
-    if (swiper) {
-      swiper.on("slideChange", () => {
-        setShowPrevArrow(!swiper.isBeginning);
-        setShowNextArrow(!swiper.isEnd);
-      });
-    }
-  }, [swiperRef]);
-  return (
-    <>
-      <div className="relative">
-        <div className="absolute z-10 transform rotate-90 xl:w-20 xl:h-16 md:w-16 md:h-12 md:-right-14 md:top-24 xl:-right-20 xl:top-1/4">
-          <Image
-            src="https://res.cloudinary.com/dwinoepzp/image/upload/v1737495095/wed/683956_1_sewwdw.svg"
-            alt="Arrow"
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <span className="absolute font-sansLight italic md:text-[18px] xl:text-[20px] md:top-16 md:-right-48 xl:top-32 xl:-right-52">
-          Te damos ideas <br /> para que te insipires!
-        </span>
-        {showNextArrow && (
-          <div
-            className="absolute cursor-pointer -right-20 top-1/2"
-            onClick={() => swiperRef.current?.slideNext()}
-          >
-            <Image
-              src="https://res.cloudinary.com/dwinoepzp/image/upload/v1737561719/wed/chevron_gu01vb.svg"
-              alt="Next arrow"
-              width={50}
-              height={50}
-            />
-          </div>
-        )}
-        {showPrevArrow && (
-          <div
-            className="absolute cursor-pointer -left-20 top-1/2"
-            onClick={() => swiperRef.current?.slidePrev()}
-          >
-            <Image
-              src="https://res.cloudinary.com/dwinoepzp/image/upload/v1737561719/wed/chevron_gu01vb.svg"
-              alt="Next arrow"
-              width={50}
-              height={50}
-              className="transform rotate-180"
-            />
-          </div>
-        )}
-        <Swiper
-          spaceBetween={50}
-          slidesPerView={1}
-          onBeforeInit={(swiper) => {
-            setShowPrevArrow(false);
-            swiperRef.current = swiper;
-          }}
-        >
-          {womenCode.map((item) => (
-            <SwiperSlide key={"w" + item.id}>
-              <div className="relative w-auto md:h-[600px] xl:h-[768px] mx-auto">
-                <Image
-                  src={item.src}
-                  alt="Picture of the author"
-                  style={{ objectFit: "cover" }}
-                  fill
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </>
-  );
-};
-const MGallery = () => {
-  const swiperRef = useRef();
-  const [showPrevArrow, setShowPrevArrow] = useState(true);
-  const [showNextArrow, setShowNextArrow] = useState(true);
-  useEffect(() => {
-    const swiper = swiperRef.current;
-    if (swiper) {
-      swiper.on("slideChange", () => {
-        setShowPrevArrow(!swiper.isBeginning);
-        setShowNextArrow(!swiper.isEnd);
-      });
-    }
-  }, [swiperRef]);
-  return (
-    <>
-      <div className="relative">
-        <div className="absolute z-10 transform rotate-90 xl:w-20 xl:h-16 md:w-16 md:h-12 md:-right-14 md:top-24 xl:-right-20 xl:top-1/4">
-          <Image
-            src="https://res.cloudinary.com/dwinoepzp/image/upload/v1737495095/wed/683956_1_sewwdw.svg"
-            alt="Arrow"
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <span className="absolute font-sansLight italic md:text-[18px] xl:text-[20px] md:top-16 md:-right-48 xl:top-32 xl:-right-52">
-          Te damos ideas <br /> para que te insipires!
-        </span>
-        {showNextArrow && (
-          <div
-            className="absolute cursor-pointer -right-20 top-1/2"
-            onClick={() => swiperRef.current?.slideNext()}
-          >
-            <Image
-              src="https://res.cloudinary.com/dwinoepzp/image/upload/v1737561719/wed/chevron_gu01vb.svg"
-              alt="Next arrow"
-              width={50}
-              height={50}
-            />
-          </div>
-        )}
-        {showPrevArrow && (
-          <div
-            className="absolute cursor-pointer -left-20 top-1/2"
-            onClick={() => swiperRef.current?.slidePrev()}
-          >
-            <Image
-              src="https://res.cloudinary.com/dwinoepzp/image/upload/v1737561719/wed/chevron_gu01vb.svg"
-              alt="Next arrow"
-              width={50}
-              height={50}
-              className="transform rotate-180"
-            />
-          </div>
-        )}
-        <Swiper
-          spaceBetween={50}
-          slidesPerView={1}
-          onBeforeInit={(swiper) => {
-            setShowPrevArrow(false);
-            swiperRef.current = swiper;
-          }}
-        >
-          {menCode.map((item) => (
-            <SwiperSlide key={"w" + item.id}>
-              <div className="relative w-auto md:h-[600px] xl:h-[768px] mx-auto">
-                <Image
-                  src={item.src}
-                  alt="Picture of the author"
-                  style={{ objectFit: "cover" }}
-                  fill
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </>
-  );
-};
 
 export default function Home({ weatherData }) {
   const t = useTranslations("HomePage");
@@ -287,7 +25,7 @@ export default function Home({ weatherData }) {
             preload="auto"
             loop
             src={
-              "https://res.cloudinary.com/dwinoepzp/video/upload/v1737315864/wed/02cb7c74-bbc9-41b7-94a5-4f8c9e8d6008_mtmo7w.mov"
+              "https://res.cloudinary.com/db03kvlju/video/upload/v1740655368/02cb7c74-bbc9-41b7-94a5-4f8c9e8d6008_mtmo7w_vqsbdm.mov"
             }
             className={`object-cover object-center absolute inset-x-0 top-1/2 -translate-y-1/2 h-[inherit] w-[inherit]`}
           />
@@ -320,9 +58,7 @@ export default function Home({ weatherData }) {
           </p>
         </div>
         <div className="mt-9">
-          {!isDateInPast(countdownDate) && (
-            <CountdownTimer deadline={countdownDate} />
-          )}
+          <CountdownTimer />
         </div>
       </section>
 
@@ -356,19 +92,19 @@ export default function Home({ weatherData }) {
         <div className="relative flex justify-center gap-x-[60px] pb-32 mt-14">
           <div className="w-[400px]">
             <Image
-              src="https://res.cloudinary.com/dwinoepzp/image/upload/v1731700775/wed/h3-icon-1_ech5kd.png"
+              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663408/2_kjwpx6.svg"
               alt="Picture of the author"
-              width={115}
-              height={115}
+              width={250}
+              height={250}
               style={{ float: "right" }}
             />
           </div>
           <div className="absolute w-1 h-full bg-softBlue" />
           <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
           <div className="max-w-[400px]">
-            <h3 className="text-base uppercase">Ceremonia</h3>
+            <h3 className="text-base uppercase">15:00 Hs - Entrada</h3>
             <p className="mb-2 text-base text-terra font-sansLightItalic">
-              Lugar dentro del palacio
+              Jardín oeste
             </p>
             <p className="text-gray">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
@@ -381,19 +117,19 @@ export default function Home({ weatherData }) {
         <div className="relative flex flex-row-reverse justify-center gap-x-[60px] pb-32">
           <div className="w-[400px]">
             <Image
-              src="https://res.cloudinary.com/dwinoepzp/image/upload/v1731700775/wed/h3-icon-2_rus0vb.png"
+              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663406/3_ukpfrn.svg"
               alt="Picture of the author"
-              width={115}
-              height={115}
+              width={250}
+              height={250}
               style={{ float: "left" }}
             />
           </div>
           <div className="absolute w-1 h-full bg-softBlue" />
           <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
           <div className="max-w-[400px] text-end">
-            <h3 className="text-base uppercase">Ceremonia</h3>
+            <h3 className="text-base uppercase">15:30 Hs - Ceremonia</h3>
             <p className="mb-2 text-base text-terra font-sansLightItalic">
-              Lugar dentro del palacio
+              Jardín oeste
             </p>
             <p className="text-gray">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
@@ -406,19 +142,19 @@ export default function Home({ weatherData }) {
         <div className="relative flex justify-center gap-x-[60px] pb-32">
           <div className="w-[400px]">
             <Image
-              src="https://res.cloudinary.com/dwinoepzp/image/upload/v1731700775/wed/h3-icon-3_f5sg3c.png"
+              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663405/5_awey9f.svg"
               alt="Picture of the author"
-              width={115}
-              height={115}
+              width={250}
+              height={250}
               style={{ float: "right" }}
             />
           </div>
           <div className="absolute w-1 h-full bg-softBlue" />
           <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
           <div className="max-w-[400px]">
-            <h3 className="text-base uppercase">Ceremonia</h3>
+            <h3 className="text-base uppercase">16:00 Hs - Recepción</h3>
             <p className="mb-2 text-base text-terra font-sansLightItalic">
-              Lugar dentro del palacio
+              Jardín este
             </p>
             <p className="text-gray">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
@@ -431,19 +167,92 @@ export default function Home({ weatherData }) {
         <div className="relative flex flex-row-reverse justify-center gap-x-[60px] pb-32">
           <div className="w-[400px]">
             <Image
-              src="https://res.cloudinary.com/dwinoepzp/image/upload/v1731700775/wed/h3-icon-4_byghg5.png"
+              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663405/4_qviajd.svg"
               alt="Picture of the author"
-              width={115}
-              height={115}
+              width={250}
+              height={250}
               style={{ float: "left" }}
             />
           </div>
+          <div className="absolute w-1 h-full bg-softBlue" />
           <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
           <div className="max-w-[400px] text-end">
-            <h3 className="text-base uppercase">Ceremonia</h3>
+            <h3 className="text-base uppercase">17:00 Hs - Ingreso al salón</h3>
             <p className="mb-2 text-base text-terra font-sansLightItalic">
-              Lugar dentro del palacio
+              Salón imperial
             </p>
+            <p className="text-gray">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              necessitatibus illo praesentium ipsam deleniti, ullam ipsum
+              accusamus cum ratione repudiandae sunt esse quia inventore unde
+              doloribus. Consequuntur illo dolores veniam.
+            </p>
+          </div>
+        </div>
+        <div className="relative flex justify-center gap-x-[60px] pb-32">
+          <div className="w-[400px]">
+            <Image
+              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663409/1_dkr29x.svg"
+              alt="Picture of the author"
+              width={250}
+              height={250}
+              style={{ float: "right" }}
+            />
+          </div>
+          <div className="absolute w-1 h-full bg-softBlue" />
+          <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
+          <div className="max-w-[400px]">
+            <h3 className="text-base uppercase">18:00 Hs - Cena</h3>
+            <p className="mb-2 text-base text-terra font-sansLightItalic">
+              Salón imperial
+            </p>
+            <p className="text-gray">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              necessitatibus illo praesentium ipsam deleniti, ullam ipsum
+              accusamus cum ratione repudiandae sunt esse quia inventore unde
+              doloribus. Consequuntur illo dolores veniam.
+            </p>
+          </div>
+        </div>
+        <div className="relative flex flex-row-reverse justify-center gap-x-[60px] pb-32">
+          <div className="w-[400px]">
+            <Image
+              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663959/8_eoclwf.svg"
+              alt="Picture of the author"
+              width={250}
+              height={250}
+              style={{ float: "left" }}
+            />
+          </div>
+          <div className="absolute w-1 h-full bg-softBlue" />
+          <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
+          <div className="max-w-[400px] text-end">
+            <h3 className="text-base uppercase">20:00 Hs - Celebración</h3>
+            <p className="mb-2 text-base text-terra font-sansLightItalic">
+              Jardín de invierno
+            </p>
+            <p className="text-gray">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              necessitatibus illo praesentium ipsam deleniti, ullam ipsum
+              accusamus cum ratione repudiandae sunt esse quia inventore unde
+              doloribus. Consequuntur illo dolores veniam.
+            </p>
+          </div>
+        </div>
+        <div className="relative flex justify-center gap-x-[60px] pb-32">
+          <div className="w-[400px]">
+            <Image
+              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663404/6_fubkd5.svg"
+              alt="Picture of the author"
+              width={250}
+              height={250}
+              style={{ float: "right" }}
+            />
+          </div>
+          <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
+          <div className="max-w-[400px]">
+            <h3 className="text-base uppercase">00:00 Hs - Fin de fiesta</h3>
+            <p className="mb-2 text-base text-terra font-sansLightItalic"></p>
             <p className="text-gray">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
               necessitatibus illo praesentium ipsam deleniti, ullam ipsum
@@ -522,7 +331,7 @@ export default function Home({ weatherData }) {
                   <div className="relative w-fit">
                     <div className="absolute z-10 h-12 top-12 xl:-right-16 md:-right-14 w-14">
                       <Image
-                        src="https://res.cloudinary.com/dwinoepzp/image/upload/v1737495095/wed/683956_1_sewwdw.svg"
+                        src="https://res.cloudinary.com/db03kvlju/image/upload/v1740655343/683956_1_sewwdw_rqwouo.svg"
                         alt="Arrow"
                         fill
                         style={{ objectFit: "cover" }}

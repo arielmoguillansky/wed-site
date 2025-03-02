@@ -12,11 +12,13 @@ const handler = async (req, res) => {
     console.log(formData.willAttend);
 
     resend.emails.send({
-      from: "Lau & Ari <vercel@resend.dev>",
+      from: "Boda Lau & Ari <vercel@resend.dev>",
       to: formData.email,
-      subject: formData.willAttend
-        ? "- Boda Laura & Ariel - Hemos recibido tu confirmación!"
-        : "- Boda Laura & Ariel - Lamentamos que no puedas asistir",
+      subject: `- Confirmación de asistencia - ${
+        formData.willAttend
+          ? "Hemos recibido tu confirmación!"
+          : "Lamentamos que no puedas asistir"
+      }`,
       react: formData.willAttend
         ? ConfirmEmailTemplate({})
         : VirtualEmailTemplate({}),
