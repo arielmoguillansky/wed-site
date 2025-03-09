@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export const Rsvp = () => {
@@ -50,51 +52,45 @@ export const Rsvp = () => {
   };
 
   return (
-    <section id="rsvp" className="flex justify-center">
-      <div className="flex-1 p-[100px] w-1/2 space-y-6">
-        <div>
-          <h2 className="text-brown font-sansLight text-[60px] mb-6">RSVP</h2>
-          <span className=" text-terra text-[48px] font-sansLightItalic mb-2 block">
-            Tu presencia es nuestro mayor regalo
-          </span>
-          <p>
-            Recorá que tenes tiempo hasta el <b>30 de Abril</b> para confirmar
-            tu asistencia a nuestra boda.
-          </p>
-          <br />
-          <p>
-            En caso de grupo familiar, cada integrante invitado deberá confirmar
-            su asistencia.
-          </p>
-        </div>
-        <div className="space-y-6">
-          <div>
-            <h4 className="text-terra text-[20px]">17/05/2025</h4>
-            <p className="max-w-[300px] text-[14px]">
-              ¡No olvides marcar esta fecha en tu calendario!
-            </p>
-          </div>
-          <div>
-            <h4 className="text-terra text-[20px]">14:30hs</h4>
-            <p className="max-w-[300px] text-[14px]">
-              ¡Recordá llegar a tiempo para no perderte ni un solo segundo de la
-              ceremonia!
-            </p>
-          </div>
-          <div>
-            <h4 className="text-terra text-[20px]">
-              Paz 750, Victoria, Buenos Aires
-            </h4>
-            <p className="max-w-[300px] text-[14px]">
-              Si no sabes como llegar, te compartimos el mapa.
-            </p>
-          </div>
-        </div>
+    <div className="max-w-[1300px] mx-auto">
+      <div className="max-w-[720px] mx-auto">
+        <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] text-center font-sansLight">
+          RSVP
+        </h2>
+        <p className="text-terra text-[24px] text-center mb-8 mt-2 max-w-[720px] mx-auto font-sansLightItalic md:mb-14">
+          Guarda tu lugar en nuestra boda
+        </p>
       </div>
-      <div className="flex-1 p-[100px] w-1/2 flex justify-center items-center">
+      <div className="max-w-[720px] mx-auto place-items-center">
+        <p className="md:text-[24px] text-center text-[20px]">
+          Recorá que tenes tiempo hasta el <b>30 de Abril</b> para confirmar tu
+          asistencia.
+        </p>
+        <br />
+        <p className="md:text-[24px] text-[20px] text-center">
+          En un grupo familiar, cada integrante invitado deberá confirmar su
+          asistencia de forma individual.
+        </p>
+        <p className="text-terra md:text-[48px] text-[32px] text-center font-sansLightItalic my-10">
+          Tu presencia es nuestro mayor regalo. Anotate!
+        </p>
+        <Link href="#rsvp-form">
+          <Image
+            className="w-8 h-8 cursor-pointer animate-bounce-arrow md:w-10 md:h-10"
+            src="https://res.cloudinary.com/db03kvlju/image/upload/v1741450513/straight_24dp_C78665_FILL0_wght400_GRAD0_opsz24_aj8nzy.svg"
+            alt="Down arrow"
+            width={50}
+            height={50}
+          />
+        </Link>
+      </div>
+      <div
+        id="rsvp-form"
+        className="flex items-center justify-center w-full mx-auto md:w-1/2 mt-28"
+      >
         <div className="max-w-[400px]">
           {sbumission ? (
-            <div className="leading-normal uppercase text-terra">
+            <div className="leading-normal text-center uppercase text-terra">
               {rsvpPayload.willAttend
                 ? "Gracias por confirmar tu asistencia, te esperamos!"
                 : `Lamentamos que no puedas asistir. De todas formas, recordá que podrás conectarte a la transmisión del evento!`}
@@ -188,6 +184,6 @@ export const Rsvp = () => {
           )}
         </div>
       </div>
-    </section>
+    </div>
   );
 };

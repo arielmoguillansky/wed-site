@@ -27,12 +27,12 @@ export const WGallery = () => {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <span className="absolute font-sansLight italic md:text-[18px] xl:text-[20px] md:top-16 md:-right-48 xl:top-32 xl:-right-52">
+        <span className="hidden md:block absolute font-sansLight italic md:text-[18px] xl:text-[20px] md:top-16 md:-right-48 xl:top-32 xl:-right-52">
           Te damos ideas <br /> para que te insipires!
         </span>
         {showNextArrow && (
           <div
-            className="absolute cursor-pointer -right-20 top-1/2"
+            className="absolute z-10 cursor-pointer -right-4 md:-right-20 top-1/2 bg-terra-100 md:bg-transparent"
             onClick={() => swiperRef.current?.slideNext()}
           >
             <Image
@@ -45,7 +45,7 @@ export const WGallery = () => {
         )}
         {showPrevArrow && (
           <div
-            className="absolute cursor-pointer -left-20 top-1/2"
+            className="absolute z-10 cursor-pointer md:-left-20 -left-4 top-1/2 bg-terra-100 md:bg-transparent"
             onClick={() => swiperRef.current?.slidePrev()}
           >
             <Image
@@ -67,7 +67,7 @@ export const WGallery = () => {
         >
           {womenCode.map((item) => (
             <SwiperSlide key={"w" + item.id}>
-              <div className="relative w-auto md:h-[600px] xl:h-[768px] mx-auto">
+              <div className="relative w-full mx-auto aspect-820-1242">
                 <Image
                   src={item.src}
                   alt="Picture of the author"
@@ -106,12 +106,12 @@ export const MGallery = () => {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <span className="absolute font-sansLight italic md:text-[18px] xl:text-[20px] md:top-16 md:-right-48 xl:top-32 xl:-right-52">
+        <span className="hidden md:block absolute font-sansLight italic md:text-[18px] xl:text-[20px] md:top-16 md:-right-48 xl:top-32 xl:-right-52">
           Te damos ideas <br /> para que te insipires!
         </span>
         {showNextArrow && (
           <div
-            className="absolute cursor-pointer -right-20 top-1/2"
+            className="absolute z-10 cursor-pointer -right-4 md:-right-20 top-1/2 bg-terra-100 md:bg-transparent"
             onClick={() => swiperRef.current?.slideNext()}
           >
             <Image
@@ -124,7 +124,7 @@ export const MGallery = () => {
         )}
         {showPrevArrow && (
           <div
-            className="absolute cursor-pointer -left-20 top-1/2"
+            className="absolute z-10 cursor-pointer md:-left-20 -left-4 top-1/2 bg-terra-100 md:bg-transparent"
             onClick={() => swiperRef.current?.slidePrev()}
           >
             <Image
@@ -146,7 +146,7 @@ export const MGallery = () => {
         >
           {menCode.map((item) => (
             <SwiperSlide key={"w" + item.id}>
-              <div className="relative w-auto md:h-[600px] xl:h-[768px] mx-auto">
+              <div className="relative w-full mx-auto aspect-820-1242">
                 <Image
                   src={item.src}
                   alt="Picture of the author"

@@ -16,7 +16,7 @@ export const Gallery = () => {
     },
     {
       id: 2,
-      src: "https://res.cloudinary.com/db03kvlju/image/upload/v1740844365/Copia_de__LBS8654_kkcial.jpg",
+      src: "https://res.cloudinary.com/db03kvlju/image/upload/v1740844368/Copia_de__LBS9503_ouvxvv.jpg",
     },
     {
       id: 3,
@@ -49,7 +49,27 @@ export const Gallery = () => {
   };
   return (
     <>
-      <div id="content" className="!mt-16">
+      <div className="md:hidden">
+        <Swiper
+          spaceBetween={16}
+          slidesPerView={1.15}
+          initialSlide={initialItem}
+        >
+          {data.map((item) => (
+            <SwiperSlide>
+              <div className="relative w-full mx-auto aspect-820-1242 h-max">
+                <Image
+                  src={item.src}
+                  alt="Picture of the author"
+                  style={{ objectFit: "contain" }}
+                  fill
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div id="content" className="!mt-16 hidden md:grid">
         {data.map((item) => (
           <div
             key={item.id}
@@ -89,11 +109,11 @@ export const Gallery = () => {
         <Swiper spaceBetween={50} slidesPerView={1} initialSlide={initialItem}>
           {data.map((item) => (
             <SwiperSlide>
-              <div className="relative w-3/4 h-[calc(100vh-500px)] mx-auto">
+              <div className="relative w-3/4 h-[calc(100vh-300px)] mx-auto">
                 <Image
                   src={item.src}
                   alt="Picture of the author"
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "contain" }}
                   fill
                 />
               </div>

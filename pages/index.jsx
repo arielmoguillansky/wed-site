@@ -5,18 +5,62 @@ import { Rsvp } from "@/components/Rsvp";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "use-intl";
+import MapBoxMap from "../components/MapBoxMap";
+import { Schedule } from "@/components/Schedule";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Home({ weatherData }) {
   const t = useTranslations("HomePage");
 
   const [wMood, setWMood] = useState(true);
+  const [isNavSticky, setIsNavSticky] = useState(false); // Add state for sticky nav
+  const [showDropdown, setShowDropdown] = useState(false); // Add state for sticky nav
+  const headerRef = useRef(null); // Create a ref for the header
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsNavSticky(!entry.isIntersecting);
+        setShowDropdown(false);
+      },
+      {
+        rootMargin: "100%", // Use the viewport as the root
+        threshold: 1, // Trigger when the entire header is out of view
+      }
+    );
+
+    if (headerRef.current) {
+      observer.observe(headerRef.current);
+    }
+
+    return () => {
+      if (headerRef.current) {
+        observer.unobserve(headerRef.current);
+      }
+    };
+  }, []);
+
+  const handleNavLink = (e, id) => {
+    e.preventDefault();
+    const target = document.getElementById(id);
+    if (target) {
+      setShowDropdown(false);
+
+      const offset = 100;
+      const targetPosition =
+        target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: targetPosition, behavior: "smooth" });
+    }
+  };
 
   return (
-    <main className="space-y-40 overflow-x-hidden">
-      <section className="relative flex items-center justify-center w-screen h-screen">
-        <div
-          className={`absolute h-full w-screen overflow-hidden dark-overlay !z-0`}
-        >
+    <>
+      <section
+        ref={headerRef}
+        className="relative flex items-center justify-center w-screen h-screen"
+      >
+        <div className="absolute h-full w-screen overflow-hidden dark-overlay !z-0">
           <video
             autoPlay
             muted={true}
@@ -27,12 +71,12 @@ export default function Home({ weatherData }) {
             src={
               "https://res.cloudinary.com/db03kvlju/video/upload/v1740655368/02cb7c74-bbc9-41b7-94a5-4f8c9e8d6008_mtmo7w_vqsbdm.mov"
             }
-            className={`object-cover object-center absolute inset-x-0 top-1/2 -translate-y-1/2 h-[inherit] w-[inherit]`}
+            className="object-cover object-center absolute inset-x-0 top-1/2 -translate-y-1/2 h-[inherit] w-[inherit]"
           />
         </div>
-        <div className="z-10 px-12">
+        <div className="z-10 px-4 md:px-12">
           <div className="flex items-center gap-x-12 text-white text-[90px] justify-center uppercase mb-4">
-            <h1 className="md:md:text-[48px] xl:text-[60px] text-[48px] relative before:absolute before:rounded-full before:content-[''] before:-right-8 before:top-1/2 before:w-2 before:h-2 before:bg-white">
+            <h1 className="xl:text-[60px] text-[48px] relative before:absolute before:rounded-full before:content-[''] before:-right-8 before:top-1/2 before:w-2 before:h-2 before:bg-white">
               Laura
             </h1>
             <h1 className="md:md:text-[48px] xl:text-[60px] text-[48px]">
@@ -45,374 +89,459 @@ export default function Home({ weatherData }) {
           </p>
         </div>
       </section>
-      <section className="">
-        <div className="mx-auto xl:max-w-[1200px] text-center">
-          <h2 className="md:text-[48px] xl:text-[60px] mb-14 leading-none font-serif">
-            Mayo 17, 2025
+      <main>
+        <nav
+          className={`hidden sticky z-10 top-0 md:flex items-center justify-center w-full p-10 uppercase before:absolute before:w-full before:h-full h-12 before:content-[''] before:-z-10 before:opacity-75 before:bg-white gap-x-10 before:backdrop-blur-sm transition-transform duration-300 ease-in-out shadow-md ${
+            isNavSticky
+              ? "translate-y-0 opacity-1"
+              : "-translate-y-full opacity-0"
+          }`}
+        >
+          <Link
+            className="nav-link"
+            onClick={(e) => {
+              handleNavLink(e, "info");
+            }}
+            href="#info"
+          >
+            Info
+          </Link>
+          <Link
+            className="nav-link"
+            onClick={(e) => {
+              handleNavLink(e, "schedule");
+            }}
+            href="#schedule"
+          >
+            Cronograma
+          </Link>
+          <Link
+            className="nav-link"
+            onClick={(e) => {
+              handleNavLink(e, "gallery");
+            }}
+            href="#gallery"
+          >
+            Galería
+          </Link>
+          <Link
+            className="nav-link"
+            onClick={(e) => {
+              handleNavLink(e, "dress-code");
+            }}
+            href="#dress-code"
+          >
+            Vestimenta
+          </Link>
+          <Link
+            className="nav-link"
+            onClick={(e) => {
+              handleNavLink(e, "weather");
+            }}
+            href="#weather"
+          >
+            Clima
+          </Link>
+          <Link
+            className="nav-link"
+            onClick={(e) => {
+              handleNavLink(e, "map");
+            }}
+            href="#map"
+          >
+            Mapa
+          </Link>
+          <Link
+            className="nav-link"
+            onClick={(e) => {
+              handleNavLink(e, "rsvp");
+            }}
+            href="#rsvp"
+          >
+            Rsvp
+          </Link>
+          <Link
+            className="nav-link"
+            onClick={(e) => {
+              handleNavLink(e, "gifts");
+            }}
+            href="#gifts"
+          >
+            Regalos
+          </Link>
+          <Link
+            className="nav-link"
+            onClick={(e) => {
+              handleNavLink(e, "streaming");
+            }}
+            href="#streaming"
+          >
+            Streaming
+          </Link>
+        </nav>
+        <nav
+          className={`md:hidden fixed z-50 top-0 flex items-center justify-center w-full p-10 uppercase before:absolute before:w-full before:h-full h-12 before:content-[''] before:-z-10 before:opacity-75 before:bg-white gap-x-10 before:left-0 before:backdrop-blur-sm transition-transform duration-300 ease-in-out ${
+            isNavSticky
+              ? "translate-y-0 opacity-1"
+              : "-translate-y-full opacity-0"
+          } ${showDropdown ? "" : "shadow-md"}`}
+        >
+          <div onClick={() => setShowDropdown(!showDropdown)}>
+            <Image
+              className={showDropdown ? "hidden" : "block"}
+              src="https://res.cloudinary.com/db03kvlju/image/upload/v1741464159/menu_24dp_594435_FILL0_wght400_GRAD0_opsz24_pieetf.svg"
+              alt="Menu"
+              width={24}
+              height={24}
+            />
+            <Image
+              className={showDropdown ? "block" : "hidden"}
+              src="https://res.cloudinary.com/db03kvlju/image/upload/v1741465026/close_24dp_594435_FILL0_wght400_GRAD0_opsz24_b5mi0r.svg"
+              alt="Menu"
+              width={24}
+              height={24}
+            />
+          </div>
+          <div
+            className={`${
+              showDropdown ? "block" : "hidden"
+            } absolute w-full h-auto top-[80px] space-y-12 before:absolute before:w-full before:h-[calc(100%+16px)] before:content-[''] before:-z-10 before:top-0 before:opacity-75 before:bg-white gap-x-10 before:backdrop-blur-sm  py-4`}
+          >
+            <Link
+              className="block text-center"
+              href="#info"
+              onClick={(e) => {
+                handleNavLink(e, "info");
+              }}
+            >
+              Info
+            </Link>
+            <Link
+              className="block text-center"
+              onClick={(e) => {
+                handleNavLink(e, "schedule");
+              }}
+              href="#schedule"
+            >
+              Cronograma
+            </Link>
+            <Link
+              className="block text-center"
+              onClick={(e) => {
+                handleNavLink(e, "gallery");
+              }}
+              href="#gallery"
+            >
+              Galería
+            </Link>
+            <Link
+              className="block text-center"
+              onClick={(e) => {
+                handleNavLink(e, "dress-code");
+              }}
+              href="#dress-code"
+            >
+              Vestimenta
+            </Link>
+            <Link
+              className="block text-center"
+              onClick={(e) => {
+                handleNavLink(e, "weather");
+              }}
+              href="#weather"
+            >
+              Clima
+            </Link>
+            <Link
+              className="block text-center"
+              onClick={(e) => {
+                handleNavLink(e, "map");
+              }}
+              href="#map"
+            >
+              Mapa
+            </Link>
+            <Link
+              className="block text-center"
+              onClick={(e) => {
+                handleNavLink(e, "gifts");
+              }}
+              href="#gifts"
+            >
+              Regalos
+            </Link>
+            <Link
+              className="block text-center"
+              onClick={(e) => {
+                handleNavLink(e, "rsvp");
+              }}
+              href="#rsvp"
+            >
+              Rsvp
+            </Link>
+            <Link
+              className="block text-center"
+              onClick={(e) => {
+                handleNavLink(e, "streaming");
+              }}
+              href="#streaming"
+            >
+              Streaming
+            </Link>
+          </div>
+        </nav>
+        <section
+          id="info"
+          className="px-4 mb-28 md:mt-40 md:px-0 mt-14 md:mb-40"
+        >
+          <div className="mx-auto max-w-[1200px] text-center">
+            <h2 className="md:text-[48px] xl:text-[60px] text-[32px] md:mb-16 mb-10 leading-none font-serif">
+              Mayo 17, 2025
+            </h2>
+            <p className="uppercase md:text-[20px] mb-2 font-sansMed">
+              Palacio Sans Souci
+            </p>
+            <p className="text-terra md:text-[24px] text-[18px] font-sansLightItalic">
+              Paz 705, Victoria, Buenos Aires
+            </p>
+          </div>
+          <div className="my-20 md:my-9">
+            <CountdownTimer />
+          </div>
+        </section>
+        <section
+          id="schedule"
+          className="mb-28 md:mb-40 px-4 md:px-0 max-w-[1300px] mx-auto"
+        >
+          <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] text-center font-sansLight">
+            Cronograma
           </h2>
-          <p className="uppercase text-[18px] mb-2 font-sansMed">
-            Palacio Sans Souci
+          <p className="text-terra text-[24px] text-center mt-2 max-w-[720px] mx-auto font-sansLightItalic mb-14">
+            Organización
           </p>
-          <p className="text-terra text-[20px] font-sansLightItalic">
-            Paz 705, Victoria, Buenos Aires
+          <Schedule />
+        </section>
+        <section id="gallery" className="px-4 mb-28 md:mb-40 md:px-0">
+          <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] text-center font-sansLight">
+            Galería
+          </h2>
+          <p className="text-terra text-[24px] text-center mb-8 mt-2 max-w-[720px] mx-auto font-sansLightItalic md:mb-14">
+            Memorias
           </p>
-        </div>
-        <div className="mt-9">
-          <CountdownTimer />
-        </div>
-      </section>
-
-      {/* <section className="relative flex items-center justify-center w-screen h-[600px]">
-        <Image
-          src="https://res.cloudinary.com/dwinoepzp/image/upload/v1731614905/wed/WhatsApp_Image_2024-11-14_at_17.07.03_dzzl0m.jpg"
-          alt="Picture of the author"
-          fill
-          style={{ objectFit: "cover" }}
-        />
-        <div className="z-10 flex flex-col items-center justify-center">
-          <h1 className="text-white font-serif font-bold text-[90px] mb-16">
-            Guarda la fecha
-          </h1>
-          <p className="text-[18px] font-sansMed text-center text-white w-[468px]">
-            Sucribite para recibir recordatorios en tu celular cuando se acerque
-            la fecha del gran momento!
-          </p>
-          <button className="py-6 mt-10 text-base uppercase bg-white px-14 text-terra">
-            Recuerdame!
-          </button>
-        </div>
-      </section> */}
-      <section className="max-w-[1300px] mx-auto">
-        <h2 className="uppercase md:text-[48px] xl:text-[60px] text-center font-sansLight">
-          Cronograma
-        </h2>
-        <p className="text-terra text-[20px] text-center mt-2 max-w-[720px] mx-auto font-sansLightItalic">
-          Organización
-        </p>
-        <div className="relative flex justify-center gap-x-[60px] pb-32 mt-14">
-          <div className="w-[400px]">
-            <Image
-              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663408/2_kjwpx6.svg"
-              alt="Picture of the author"
-              width={250}
-              height={250}
-              style={{ float: "right" }}
-            />
-          </div>
-          <div className="absolute w-1 h-full bg-softBlue" />
-          <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
-          <div className="max-w-[400px]">
-            <h3 className="text-base uppercase">15:00 Hs - Entrada</h3>
-            <p className="mb-2 text-base text-terra font-sansLightItalic">
-              Jardín oeste
-            </p>
-            <p className="text-gray">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
-              necessitatibus illo praesentium ipsam deleniti, ullam ipsum
-              accusamus cum ratione repudiandae sunt esse quia inventore unde
-              doloribus. Consequuntur illo dolores veniam.
-            </p>
-          </div>
-        </div>
-        <div className="relative flex flex-row-reverse justify-center gap-x-[60px] pb-32">
-          <div className="w-[400px]">
-            <Image
-              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663406/3_ukpfrn.svg"
-              alt="Picture of the author"
-              width={250}
-              height={250}
-              style={{ float: "left" }}
-            />
-          </div>
-          <div className="absolute w-1 h-full bg-softBlue" />
-          <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
-          <div className="max-w-[400px] text-end">
-            <h3 className="text-base uppercase">15:30 Hs - Ceremonia</h3>
-            <p className="mb-2 text-base text-terra font-sansLightItalic">
-              Jardín oeste
-            </p>
-            <p className="text-gray">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
-              necessitatibus illo praesentium ipsam deleniti, ullam ipsum
-              accusamus cum ratione repudiandae sunt esse quia inventore unde
-              doloribus. Consequuntur illo dolores veniam.
-            </p>
-          </div>
-        </div>
-        <div className="relative flex justify-center gap-x-[60px] pb-32">
-          <div className="w-[400px]">
-            <Image
-              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663405/5_awey9f.svg"
-              alt="Picture of the author"
-              width={250}
-              height={250}
-              style={{ float: "right" }}
-            />
-          </div>
-          <div className="absolute w-1 h-full bg-softBlue" />
-          <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
-          <div className="max-w-[400px]">
-            <h3 className="text-base uppercase">16:00 Hs - Recepción</h3>
-            <p className="mb-2 text-base text-terra font-sansLightItalic">
-              Jardín este
-            </p>
-            <p className="text-gray">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
-              necessitatibus illo praesentium ipsam deleniti, ullam ipsum
-              accusamus cum ratione repudiandae sunt esse quia inventore unde
-              doloribus. Consequuntur illo dolores veniam.
-            </p>
-          </div>
-        </div>
-        <div className="relative flex flex-row-reverse justify-center gap-x-[60px] pb-32">
-          <div className="w-[400px]">
-            <Image
-              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663405/4_qviajd.svg"
-              alt="Picture of the author"
-              width={250}
-              height={250}
-              style={{ float: "left" }}
-            />
-          </div>
-          <div className="absolute w-1 h-full bg-softBlue" />
-          <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
-          <div className="max-w-[400px] text-end">
-            <h3 className="text-base uppercase">17:00 Hs - Ingreso al salón</h3>
-            <p className="mb-2 text-base text-terra font-sansLightItalic">
-              Salón imperial
-            </p>
-            <p className="text-gray">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
-              necessitatibus illo praesentium ipsam deleniti, ullam ipsum
-              accusamus cum ratione repudiandae sunt esse quia inventore unde
-              doloribus. Consequuntur illo dolores veniam.
-            </p>
-          </div>
-        </div>
-        <div className="relative flex justify-center gap-x-[60px] pb-32">
-          <div className="w-[400px]">
-            <Image
-              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663409/1_dkr29x.svg"
-              alt="Picture of the author"
-              width={250}
-              height={250}
-              style={{ float: "right" }}
-            />
-          </div>
-          <div className="absolute w-1 h-full bg-softBlue" />
-          <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
-          <div className="max-w-[400px]">
-            <h3 className="text-base uppercase">18:00 Hs - Cena</h3>
-            <p className="mb-2 text-base text-terra font-sansLightItalic">
-              Salón imperial
-            </p>
-            <p className="text-gray">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
-              necessitatibus illo praesentium ipsam deleniti, ullam ipsum
-              accusamus cum ratione repudiandae sunt esse quia inventore unde
-              doloribus. Consequuntur illo dolores veniam.
-            </p>
-          </div>
-        </div>
-        <div className="relative flex flex-row-reverse justify-center gap-x-[60px] pb-32">
-          <div className="w-[400px]">
-            <Image
-              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663959/8_eoclwf.svg"
-              alt="Picture of the author"
-              width={250}
-              height={250}
-              style={{ float: "left" }}
-            />
-          </div>
-          <div className="absolute w-1 h-full bg-softBlue" />
-          <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
-          <div className="max-w-[400px] text-end">
-            <h3 className="text-base uppercase">20:00 Hs - Celebración</h3>
-            <p className="mb-2 text-base text-terra font-sansLightItalic">
-              Jardín de invierno
-            </p>
-            <p className="text-gray">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
-              necessitatibus illo praesentium ipsam deleniti, ullam ipsum
-              accusamus cum ratione repudiandae sunt esse quia inventore unde
-              doloribus. Consequuntur illo dolores veniam.
-            </p>
-          </div>
-        </div>
-        <div className="relative flex justify-center gap-x-[60px] pb-32">
-          <div className="w-[400px]">
-            <Image
-              src="https://res.cloudinary.com/db03kvlju/image/upload/v1740663404/6_fubkd5.svg"
-              alt="Picture of the author"
-              width={250}
-              height={250}
-              style={{ float: "right" }}
-            />
-          </div>
-          <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
-          <div className="max-w-[400px]">
-            <h3 className="text-base uppercase">00:00 Hs - Fin de fiesta</h3>
-            <p className="mb-2 text-base text-terra font-sansLightItalic"></p>
-            <p className="text-gray">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
-              necessitatibus illo praesentium ipsam deleniti, ullam ipsum
-              accusamus cum ratione repudiandae sunt esse quia inventore unde
-              doloribus. Consequuntur illo dolores veniam.
-            </p>
-          </div>
-        </div>
-      </section>
-      <section>
-        <h2 className="uppercase md:text-[48px] xl:text-[60px] text-center font-sansLight">
-          Galería
-        </h2>
-        <p className="text-terra text-[20px] text-center mt-2 max-w-[720px] mx-auto font-sansLightItalic">
-          Memorias
-        </p>
-        <Gallery />
-      </section>
-      <section className="w-full px-8 xl:max-w-[1300px] mx-auto">
-        <h2 className="uppercase md:text-[48px] xl:text-[60px] text-center font-sansLight mb-12">
-          Código de vestimenta
-        </h2>
-        <h2 className="md:text-[40px] xl:text-[48px] mb-14 leading-none font-serif italic flex justify-center">
-          - Elegante -
-        </h2>
-        <div className="flex">
-          <div className="w-1/2 ">
-            <div className="relative w-3/4 p-4 bg-white border text-terra md:mx-auto xl:mx-0">
-              <div className="absolute md:top-[-50px] xl:top-[-54px] left-[-1px] flex">
-                <button
-                  className={`text-terra border uppercase md:text-[16px] xl:text-[20px] p-4 text-center max-w-[720px] mx-auto font-sans ${
-                    wMood
-                      ? "border-terra border-b-transparent bg-white"
-                      : "border-transparent"
-                  }`}
-                  onClick={() => setWMood(true)}
-                >
-                  Mujer
-                </button>
-                <button
-                  className={`text-terra border uppercase md:text-[16px] xl:text-[20px] p-4 text-center max-w-[720px] mx-auto font-sans ${
-                    !wMood
-                      ? "border-terra border-b-transparent bg-white"
-                      : "border-transparent"
-                  }`}
-                  onClick={() => setWMood(false)}
-                >
-                  Hombre
-                </button>
+          <Gallery />
+        </section>
+        <section
+          id="dress-code"
+          className="mb-28 md:mb-40 px-4 w-full md:px-8 xl:max-w-[1300px] mx-auto"
+        >
+          <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] mb-8 md:mb-0 text-center font-sansLight">
+            Código de vestimenta
+          </h2>
+          <h2 className="md:text-[32px] xl:text-[40px] text-[28px] mb-14 leading-none font-serif italic flex justify-center">
+            - Elegante -
+          </h2>
+          <div className="flex-col items-center justify-center flex md:flex-row mt-[calc(64px+54px)]">
+            <div className="w-full md:w-1/2">
+              <div className="relative w-full p-4 bg-white border md:w-3/4 text-terra md:mx-auto xl:mx-0">
+                <div className="absolute md:top-[-50px] top-[-50px] xl:top-[-54px] left-[-1px] flex">
+                  <button
+                    className={`text-terra border uppercase md:text-[16px] xl:text-[20px] p-4 text-center max-w-[720px] mx-auto font-sans ${
+                      wMood
+                        ? "border-terra border-b-transparent bg-white"
+                        : "border-transparent"
+                    }`}
+                    onClick={() => setWMood(true)}
+                  >
+                    Mujer
+                  </button>
+                  <button
+                    className={`text-terra border uppercase md:text-[16px] xl:text-[20px] p-4 text-center max-w-[720px] mx-auto font-sans ${
+                      !wMood
+                        ? "border-terra border-b-transparent bg-white"
+                        : "border-transparent"
+                    }`}
+                    onClick={() => setWMood(false)}
+                  >
+                    Hombre
+                  </button>
+                </div>
+                {wMood ? <WGallery /> : <MGallery />}
               </div>
-              {wMood ? <WGallery /> : <MGallery />}
             </div>
-          </div>
-          <div className="text-terra xl:w-1/3 text-[20px] px-8 xl:px-0 mx-auto font-sansLightItalic place-content-center">
-            <div className="mb-8 h-[300px]">
-              <p className="mb-4 font-sans text-terra">
-                Queremos que vayas formal pero sin perder la comodidad para que
-                puedas bailar.
-              </p>
-              {wMood ? (
-                <div className="p-4 mt-4 border border-terra">
-                  <h4 className="mb-4">PARA ELLAS</h4>
-                  <p className="text-[18px] mb-4">
-                    Un vestido de cóctel o un traje pantalón/falda larga
-                    elegante
-                  </p>
-                  <p className="text-[18px] mb-4">
-                    Zapatos de tacón alto, medio o bajo - según tu preferencia y
-                    comodidad
-                  </p>
-                  <p className="mb-2 font-sans">¡Cuidado con el color!</p>
-                  <p className="mb-4">
-                    El blanco - con sus variantes - es un color hermoso, pero en
-                    nuestra boda, es exclusivo para la novia.
-                  </p>
-                  <div className="relative w-fit">
-                    <div className="absolute z-10 h-12 top-12 xl:-right-16 md:-right-14 w-14">
-                      <Image
-                        src="https://res.cloudinary.com/db03kvlju/image/upload/v1740655343/683956_1_sewwdw_rqwouo.svg"
-                        alt="Arrow"
-                        fill
-                        style={{ objectFit: "cover" }}
-                      />
-                    </div>
-                    <span className="absolute font-sans italic xl:top-28 md:top-24 xl:-right-40 md:-right-16 xl:-rotate-12">
-                      Evita estos colores!
-                    </span>
-                    <div className="flex mb-4 gap-x-4">
-                      <div className="w-12 h-12 bg-[#F5F5F5] rounded-full" />
-                      <div className="w-12 h-12 bg-[#EFECE7] rounded-full" />
-                      <div className="w-12 h-12 bg-[#ECE9E5] rounded-full" />
-                      <div className="w-12 h-12 bg-[#E5E1D8] rounded-full" />
-                      <div className="w-12 h-12 bg-[#E4DFDA] rounded-full" />
-                      <div className="w-12 h-12 bg-[#E1D8CE] rounded-full" />
+            <div className="text-terra w-full md:w-1/3 text-[20px] md:px-8 xl:px-0 mx-auto font-sansLightItalic place-content-center">
+              <div className="md:mb-8 md:h-[300px]">
+                <p className="hidden mb-4 font-sans md:block text-terra">
+                  Queremos que vayas formal pero sin perder la comodidad para
+                  que puedas bailar.
+                </p>
+                {wMood ? (
+                  <div className="p-4 mt-4 border border-terra">
+                    <h4 className="mb-4">PARA ELLAS</h4>
+                    <p className="text-[18px] mb-4">
+                      Un vestido de cóctel o un traje pantalón/falda larga
+                      elegante
+                    </p>
+                    <p className="text-[18px] mb-8 md:mb-4">
+                      Zapatos de tacón alto, medio o bajo - según tu preferencia
+                      y comodidad
+                    </p>
+                    <p className="mb-2 font-sans">¡Cuidado con el color!</p>
+                    <p className="mb-4">
+                      El blanco - con sus variantes - es un color hermoso, pero
+                      en nuestra boda, es <b>exclusivo para la novia</b>.
+                    </p>
+                    <div className="w-full overflow-x-scroll overflow-y-hidden md:overflow-x-hidden">
+                      <div className="relative w-fit">
+                        {/* <div className="absolute z-10 h-12 top-12 xl:-right-16 md:-right-14 w-14">
+                          <Image
+                            src="https://res.cloudinary.com/db03kvlju/image/upload/v1740655343/683956_1_sewwdw_rqwouo.svg"
+                            alt="Arrow"
+                            fill
+                            style={{ objectFit: "cover" }}
+                          />
+                        </div>
+                        <span className="absolute font-sans italic xl:top-28 md:top-24 xl:-right-40 md:-right-16 xl:-rotate-12">
+                          Evita estos colores!
+                        </span> */}
+                        <div className="flex mb-4 md:gap-x-4 gap-x-2">
+                          <div className="w-12 h-12 bg-[#F5F5F5] rounded-full" />
+                          <div className="w-12 h-12 bg-[#EFECE7] rounded-full" />
+                          <div className="w-12 h-12 bg-[#ECE9E5] rounded-full" />
+                          <div className="w-12 h-12 bg-[#E5E1D8] rounded-full" />
+                          <div className="w-12 h-12 bg-[#E4DFDA] rounded-full" />
+                          <div className="w-12 h-12 bg-[#E1D8CE] rounded-full" />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ) : (
-                <div className="p-4 mt-4 border border-terra">
-                  <h4 className="mb-4">PARA ELLOS</h4>
-                  <p className="text-[18px] mb-4">
-                    Traje formal de dos o tres piezas, del color de tu
-                    preferencia, con pantalones y chaqueta que combinen
-                  </p>
-                  <p className="text-[18px] mb-4">
-                    Camisa de manga larga, con cuello alto y botones
-                  </p>
-                  <p className="text-[18px]">
-                    Zapatos de cuero, estilo clásico (oxford, legate, brogue,
-                    derby, con hebilla, mocasines)
-                  </p>
-                </div>
-              )}
+                ) : (
+                  <div className="p-4 mt-4 border border-terra">
+                    <h4 className="mb-4">PARA ELLOS</h4>
+                    <p className="text-[18px] mb-4">
+                      Traje formal de dos o tres piezas, del color de tu
+                      preferencia, con pantalones y chaqueta que combinen
+                    </p>
+                    <p className="text-[18px] mb-4">
+                      Camisa de manga larga, con cuello alto y botones
+                    </p>
+                    <p className="text-[18px]">
+                      Zapatos de cuero, estilo clásico (oxford, legate, brogue,
+                      derby, con hebilla, mocasines)
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section className="max-w-[1300px] mx-auto">
-        <h2 className="uppercase md:text-[48px] xl:text-[60px] text-center font-sansLight">
-          Clima
-        </h2>
-        <p className="mb-6 text-terra text-[20px] text-center mt-2 max-w-[720px] mx-auto font-sansLightItalic">
-          Ideal para saber cómo abrigarse
-        </p>
-        <p className="text-[24px] max-w-[640px] mx-auto mb-6">
-          En esta época, Buenos Aires está en{" "}
-          <b className="text-terra">otoño</b>, con temperaturas típicamente
-          frescas y agradables durante el día y un poco más frías por la noche.
-          Es por eso que te recomendamos vestir en capas para adaptarse al clima
-          cambiante del día
-        </p>
-        <div className="mx-auto space-y-4 w-fit">
-          <p className="text-brown text-[32px]">
-            Mínima{" "}
-            <span className="font-sans text-[42px]">
-              {Math.round(weatherData.daily.temperature_2m_min[0])}
-            </span>{" "}
-            °C
+        </section>
+        <section
+          id="weather"
+          className="mb-28 md:mb-40 px-4 md:px-0 max-w-[1300px] mx-auto"
+        >
+          <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] text-center font-sansLight">
+            Clima
+          </h2>
+          <p className="text-terra text-[24px] text-center mb-8 mt-2 max-w-[720px] mx-auto font-sansLightItalic md:mb-14">
+            Ideal para saber cómo abrigarse
           </p>
-          <p className="text-brown text-[32px]">
-            Máxima{" "}
-            <span className="font-sans text-[42px]">
-              {Math.round(weatherData.daily.temperature_2m_max[0])}
-            </span>{" "}
-            °C
+          <p className="text-[20px] md:text-[24px] max-w-[640px] mx-auto mb-10">
+            En esta época, Buenos Aires está en{" "}
+            <b className="text-terra">otoño</b>, con temperaturas típicamente
+            cálidas y agradables durante el día y un poco más frescas por la
+            noche. Es por eso que te recomendamos vestir en capas para adaptarte
+            al clima cambiante del día
           </p>
-        </div>
-      </section>
-      <section>
-        <h2 className="uppercase md:text-[48px] xl:text-[60px] text-center font-sansLight">
-          Mapa
-        </h2>
-        <p className="text-terra text-[20px] text-center mt-2 max-w-[720px] mx-auto font-sansLightItalic">
-          Todo lo necesario para saber cómo llegar
-        </p>
-        <div></div>
-      </section>
-      <div className="my-6" />
-      <Rsvp />
-    </main>
+          <div className="mx-auto space-y-4 w-fit">
+            <p className="text-brown text-[24px]">
+              Mínima{" "}
+              <span className="font-sans text-[42px] ml-2">
+                {Math.round(weatherData.daily.temperature_2m_min[0])}
+              </span>{" "}
+              °C
+            </p>
+            <p className="text-brown text-[24px]">
+              Máxima{" "}
+              <span className="font-sans text-[42px] ml-2">
+                {Math.round(weatherData.daily.temperature_2m_max[0])}
+              </span>{" "}
+              °C
+            </p>
+          </div>
+        </section>
+        <section id="map" className="mb-40">
+          <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] text-center font-sansLight">
+            Mapa
+          </h2>
+          <p className="text-terra text-[24px] text-center mb-8 mt-2 max-w-[720px] mx-auto font-sansLightItalic md:mb-14">
+            Todo lo necesario para saber cómo llegar
+          </p>
+          <MapBoxMap />
+        </section>
+        <section
+          id="gifts"
+          className="mb-28 md:mb-40 px-4 md:px-0 max-w-[1300px] mx-auto"
+        >
+          <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] text-center font-sansLight">
+            Regalos
+          </h2>
+          <p className="text-terra text-[24px] text-center mb-8 mt-2 max-w-[720px] mx-auto font-sansLightItalic md:mb-14">
+            Por si te caímos bien y querés regalarnos algo
+          </p>
+          <p className="text-[20px] md:text-[24px] max-w-[640px] mx-auto mb-10">
+            Tiempos modernos requieren soluciones modernas. Te evitamos el
+            trabajo de pensar qué regalarnos, y a cambio te proponemos una
+            lluvia de sobres virtual.
+          </p>
+          <p className="text-[20px] md:text-[24px] max-w-[640px] mx-auto mb-10">
+            Puedes enviar tu sobre a las siguientes cuentas bancarias -según la
+            moneda que prefieras:
+          </p>
+
+          <div className="space-y-4">
+            <h4 className="mx-auto mb-8 w-fit">
+              <b>ARS</b>
+            </h4>
+            <p>
+              Alias: <span className="font-semibold">POEMA.CANCHA.MURO</span>
+            </p>
+            <p>
+              CBU: <span className="font-semibold">0070702430004000648375</span>
+            </p>
+          </div>
+          <hr className="w-full my-8 text-terra" />
+          <div className="space-y-4">
+            <h4 className="mx-auto mb-8 w-fit">
+              <b>USD</b>
+            </h4>
+            <p>
+              Alias: <span className="font-semibold">LONJA.MARTES.CIFRA</span>
+            </p>
+            <p>
+              CBU: <span className="font-semibold">0070702431004001562846</span>
+            </p>
+          </div>
+        </section>
+        <section id="rsvp" className="px-4 mb-28 md:mb-40 md:px-0">
+          <Rsvp />
+        </section>
+        <section id="streaming" className="px-4 mb-28 md:mb-40 md:px-0">
+          <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] text-center font-sansLight">
+            Streaming
+          </h2>
+          <p className="text-terra text-[24px] text-center mb-8 mt-2 max-w-[720px] mx-auto font-sansLightItalic md:mb-14">
+            Para que puedas acompañarnos desde cualquier lugar
+          </p>
+          <p className="max-w-[720px] mx-auto text-center md:text-[24px] text-[20px] italic">
+            Aquí estará disponible el link para que puedas ver la ceremonia en
+            vivo y no te pierdas ningún detalle.
+          </p>
+        </section>
+      </main>
+      <footer className="flex items-center justify-center p-10 bg-terra text-pearl gap-x-2 md:text-[20px] text-[18px]">
+        Hecho con
+        <Image src={"/images/hearth.svg"} width={28} height={28} />x Ari y Lau
+      </footer>
+    </>
   );
 }
 
