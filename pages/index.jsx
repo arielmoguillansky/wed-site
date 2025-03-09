@@ -4,15 +4,11 @@ import { Gallery } from "@/components/Gallery";
 import { Rsvp } from "@/components/Rsvp";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "use-intl";
 import MapBoxMap from "../components/MapBoxMap";
 import { Schedule } from "@/components/Schedule";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function Home({ weatherData }) {
-  const t = useTranslations("HomePage");
-
   const [wMood, setWMood] = useState(true);
   const [isNavSticky, setIsNavSticky] = useState(false); // Add state for sticky nav
   const [showDropdown, setShowDropdown] = useState(false); // Add state for sticky nav
@@ -545,7 +541,7 @@ export default function Home({ weatherData }) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const response = await fetch(
     "https://archive-api.open-meteo.com/v1/era5?latitude=-34.4467052&longitude=-58.5445323&start_date=2021-05-17&end_date=2021-05-17&daily=temperature_2m_max,temperature_2m_min"
   );
@@ -554,7 +550,6 @@ export async function getStaticProps(context) {
   return {
     props: {
       weatherData,
-      messages: (await import(`../lang/${context.locale}.json`)).default,
     },
     revalidate: 86400,
   };
