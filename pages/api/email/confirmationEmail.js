@@ -15,9 +15,14 @@ const handler = async (req, res) => {
       from: "Boda Lau & Ari <vercel@resend.dev>",
       to: formData.email,
       subject: "Confirmación de asistencia",
-      text: "HGOLA",
+      react: formData.willAttend
+        ? ConfirmEmailTemplate({})
+        : VirtualEmailTemplate({}),
     });
-    console.log("~~~~~~ RESEND SENT~~~~~~~~~~", data, error);
+
+    if (error) {
+      res.status(400).json({ message: `Email could not be sent: ${error}` });
+    }
 
     res.status(200).json({ message: "Email sent" });
   } catch (err) {
