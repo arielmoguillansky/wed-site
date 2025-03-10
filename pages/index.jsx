@@ -557,7 +557,7 @@ export default function Home({ weatherData }) {
               <b>COP</b>
             </h4>
             <p>
-              CBU: <span className="font-semibold">0070702431004001562846</span>
+              CBU: <span className="font-semibold">61300002502</span>
             </p>
           </div>
         </section>
