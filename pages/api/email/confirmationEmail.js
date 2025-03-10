@@ -17,7 +17,7 @@ const handler = async (req, res) => {
       subject: "Confirmación de asistencia",
       text: "HGOLA",
     });
-    console.log("~~~~~~ RESEND SENT~~~~~~~~~~", data);
+    console.log("~~~~~~ RESEND SENT~~~~~~~~~~", data, error);
 
     res.status(200).json({ message: "Email sent" });
   } catch (err) {
