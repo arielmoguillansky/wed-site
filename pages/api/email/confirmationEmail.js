@@ -4,7 +4,7 @@ import {
 } from "@/components/EmailTemplate";
 import { Resend } from "resend";
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const RESEND_API_KEY = process.env.NEXT_PUBLIC_RESEND_API_KEY;
 
 const handler = async (req, res) => {
   const formData = JSON.parse(req.body);
