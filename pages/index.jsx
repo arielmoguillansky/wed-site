@@ -3,16 +3,23 @@ import { MGallery, WGallery } from "@/components/FashionGallery";
 import { Gallery } from "@/components/Gallery";
 import { Rsvp } from "@/components/Rsvp";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import MapBoxMap from "../components/MapBoxMap";
 import { Schedule } from "@/components/Schedule";
 import Link from "next/link";
+import ReactModal from "react-modal";
 
 export default function Home({ weatherData }) {
   const [wMood, setWMood] = useState(true);
   const [isNavSticky, setIsNavSticky] = useState(false); // Add state for sticky nav
   const [showDropdown, setShowDropdown] = useState(false); // Add state for sticky nav
+  const [showModal, setShowModal] = useState(false); // Add state for sticky nav
+  const [isClient, setIsClient] = useState(false);
   const headerRef = useRef(null); // Create a ref for the header
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     function setViewportHeight() {
@@ -33,6 +40,7 @@ export default function Home({ weatherData }) {
       ([entry]) => {
         setIsNavSticky(!entry.isIntersecting);
         setShowDropdown(false);
+        setShowModal(true);
       },
       {
         rootMargin: "100%", // Use the viewport as the root
@@ -63,6 +71,12 @@ export default function Home({ weatherData }) {
       window.scrollTo({ top: targetPosition, behavior: "smooth" });
     }
   };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+
+  if (!isClient) return null;
 
   return (
     <>
@@ -581,6 +595,30 @@ export default function Home({ weatherData }) {
         Hecho con
         <Image src={"/images/hearth.svg"} width={28} height={28} />x Ari y Lau
       </footer>
+      <ReactModal
+        closeTimeoutMS={200}
+        appElement={document?.body}
+        onRequestClose={handleModalClose}
+        isOpen={showModal}
+        shouldCloseOnEsc={true}
+        overlayClassName="ig-gallery-overlay"
+        className="ig-gallery-content"
+      >
+        <div
+          onClick={handleModalClose}
+          className="absolute cursor-pointer top-10 right-10"
+        >
+          <Image
+            src="https://res.cloudinary.com/db03kvlju/image/upload/v1740655344/close_24dp_5F6368_FILL0_wght400_GRAD0_opsz24_lsqovh_sdr2tg.svg"
+            alt="Icon close"
+            width={32}
+            height={32}
+            style={{ float: "left" }}
+          />
+        </div>
+        ¿Estás siguiendo a foreveerfused en Instagram? ¡No te pierdas las
+        últimas novedades!
+      </ReactModal>
     </>
   );
 }
