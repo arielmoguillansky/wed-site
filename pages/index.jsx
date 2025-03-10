@@ -54,7 +54,10 @@ export default function Home({ weatherData }) {
     <>
       <section
         ref={headerRef}
-        className="relative flex items-center justify-center w-screen h-screen"
+        className="relative flex items-center justify-center w-screen"
+        style={{
+          height: "calc(var(--vh, 1vh) * 100)",
+        }}
       >
         <div className="absolute h-full w-screen overflow-hidden dark-overlay !z-0">
           <video
