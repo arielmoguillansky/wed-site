@@ -71,19 +71,35 @@ export default function Home({ weatherData }) {
           />
         </div>
         <div className="z-10 px-4 md:px-12">
-          <div className="flex items-center gap-x-12 text-white text-[90px] justify-center uppercase mb-4">
-            <h1 className="xl:text-[60px] text-[48px] relative before:absolute before:rounded-full before:content-[''] before:-right-8 before:top-1/2 before:w-2 before:h-2 before:bg-white">
-              Laura
-            </h1>
-            <h1 className="md:md:text-[48px] xl:text-[60px] text-[48px]">
+          <div className="flex items-center gap-x-12 text-pearl text-[90px] font-serif justify-center mb-4">
+            <h1 className="xl:text-[120px] lg:text-[60px] text-[40px] relative before:absolute before:rounded-full before:-right-10 before:top-1/2 md:before:w-2 before:h-2 before:bg-pearl after:-left-6 after:top-1/2 md:after:w-2 after:h-2 after:bg-pearl after:absolute after:rounded-full">
+              Laura{" "}
+              <span className="lg:text-[32px] xl:text-[60px] text-[24px]">
+                &
+              </span>{" "}
               Ariel
             </h1>
           </div>
-          <p className="xl:max-w-[720px] text-center text-white md:text-[30px] text-[24px]">
-            Nos casamos y queremos compartir este soñado momento con ustedes!
-            Podríamos en un parrafo más largo para que ocupe.
-          </p>
         </div>
+        <Link
+          href="#info"
+          onClick={(e) => {
+            handleNavLink(e, "info");
+          }}
+          className="absolute z-50 flex flex-col items-center justify-center bottom-6 gap-y-4 md:w-full md:h-14"
+        >
+          <p className="text-pearl md:text-[32px] text-[20px] bottom-4 italic">
+            La boda
+          </p>
+          <Image
+            className="animate-bounce-arrow"
+            src="https://res.cloudinary.com/db03kvlju/image/upload/v1741607109/chevron_right_24dp_DEDEE1_FILL0_wght400_GRAD0_opsz24_wfgyrg.svg"
+            alt="Down arrow"
+            priority
+            width={24}
+            height={24}
+          />
+        </Link>
       </section>
       <main>
         <nav
@@ -307,7 +323,7 @@ export default function Home({ weatherData }) {
         </section>
         <section
           id="schedule"
-          className="mb-28 md:mb-40 px-4 md:px-0 max-w-[1300px] mx-auto"
+          className="mb-28 md:mb-40 px-4 md:px-0 lg:max-w-[720px] xl:max-w-[1300px] mx-auto"
         >
           <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] text-center font-sansLight">
             Cronograma
@@ -328,7 +344,7 @@ export default function Home({ weatherData }) {
         </section>
         <section
           id="dress-code"
-          className="mb-28 md:mb-40 px-4 w-full md:px-8 xl:max-w-[1300px] mx-auto"
+          className="mb-28 md:mb-40 px-4 w-full md:px-8 xl:lg:max-w-[720px] xl:max-w-[1300px] mx-auto"
         >
           <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] mb-8 md:mb-0 text-center font-sansLight">
             Código de vestimenta
@@ -364,7 +380,7 @@ export default function Home({ weatherData }) {
                 {wMood ? <WGallery /> : <MGallery />}
               </div>
             </div>
-            <div className="text-terra w-full md:w-1/3 text-[20px] md:px-8 xl:px-0 mx-auto font-sansLightItalic place-content-center">
+            <div className="text-terra w-full xl:w-1/3 text-[20px] md:px-8 xl:px-0 mx-auto font-sansLightItalic place-content-center">
               <div className="md:mb-8 md:h-[300px]">
                 <p className="hidden mb-4 font-sans md:block text-terra">
                   Queremos que vayas formal pero sin perder la comodidad para
@@ -388,17 +404,7 @@ export default function Home({ weatherData }) {
                     </p>
                     <div className="w-full overflow-x-scroll overflow-y-hidden md:overflow-x-hidden">
                       <div className="relative w-fit">
-                        {/* <div className="absolute z-10 h-12 top-12 xl:-right-16 md:-right-14 w-14">
-                          <Image
-                            src="https://res.cloudinary.com/db03kvlju/image/upload/v1740655343/683956_1_sewwdw_rqwouo.svg"
-                            alt="Arrow"
-                            fill
-                            style={{ objectFit: "cover" }}
-                          />
-                        </div>
-                        <span className="absolute font-sans italic xl:top-28 md:top-24 xl:-right-40 md:-right-16 xl:-rotate-12">
-                          Evita estos colores!
-                        </span> */}
+                        <span className="block mb-2">Evita estos colores!</span>
                         <div className="flex mb-4 md:gap-x-4 gap-x-2">
                           <div className="w-12 h-12 bg-[#F5F5F5] rounded-full" />
                           <div className="w-12 h-12 bg-[#EFECE7] rounded-full" />
@@ -432,7 +438,7 @@ export default function Home({ weatherData }) {
         </section>
         <section
           id="weather"
-          className="mb-28 md:mb-40 px-4 md:px-0 max-w-[1300px] mx-auto"
+          className="mb-28 md:mb-40 px-4 md:px-0 lg:max-w-[720px] xl:max-w-[1300px] mx-auto"
         >
           <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] text-center font-sansLight">
             Clima
@@ -475,7 +481,7 @@ export default function Home({ weatherData }) {
         </section>
         <section
           id="gifts"
-          className="mb-28 md:mb-40 px-4 md:px-0 max-w-[1300px] mx-auto"
+          className="mb-28 md:mb-40 px-4 md:px-0 lg:max-w-[720px] xl:max-w-[1300px] mx-auto"
         >
           <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] text-center font-sansLight">
             Regalos
@@ -488,12 +494,12 @@ export default function Home({ weatherData }) {
             trabajo de pensar qué regalarnos, y a cambio te proponemos una
             lluvia de sobres virtual.
           </p>
-          <p className="text-[20px] md:text-[24px] max-w-[640px] mx-auto mb-10">
+          <p className="text-[20px] md:text-[24px] max-w-[640px] mx-auto mb-14">
             Puedes enviar tu sobre a las siguientes cuentas bancarias -según la
             moneda que prefieras:
           </p>
 
-          <div className="space-y-4">
+          <div className="max-w-[640px] mx-auto space-y-4">
             <h4 className="mx-auto mb-8 w-fit">
               <b>ARS</b>
             </h4>
@@ -504,8 +510,8 @@ export default function Home({ weatherData }) {
               CBU: <span className="font-semibold">0070702430004000648375</span>
             </p>
           </div>
-          <hr className="w-full my-8 text-terra" />
-          <div className="space-y-4">
+          <hr className="max-w-[640px] mx-auto w-full my-8 text-terra" />
+          <div className="max-w-[640px] mx-auto space-y-4">
             <h4 className="mx-auto mb-8 w-fit">
               <b>USD</b>
             </h4>

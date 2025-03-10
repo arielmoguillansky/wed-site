@@ -17,7 +17,6 @@ export const Rsvp = () => {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-    console.log(rsvpPayload);
   };
 
   const handleAssistance = (e) => {
@@ -52,8 +51,8 @@ export const Rsvp = () => {
   };
 
   return (
-    <div className="max-w-[1300px] mx-auto">
-      <div className="max-w-[720px] mx-auto">
+    <div className="xl:max-w-[1300px] max-w-[720px] mx-auto">
+      <div>
         <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] text-center font-sansLight">
           RSVP
         </h2>
@@ -62,12 +61,12 @@ export const Rsvp = () => {
         </p>
       </div>
       <div className="max-w-[720px] mx-auto place-items-center">
-        <p className="md:text-[24px] text-center text-[20px]">
+        <p className="md:text-[24px] text-[20px]">
           Recorá que tenes tiempo hasta el <b>30 de Abril</b> para confirmar tu
           asistencia.
         </p>
         <br />
-        <p className="md:text-[24px] text-[20px] text-center">
+        <p className="md:text-[24px] text-[20px]">
           En un grupo familiar, cada integrante invitado deberá confirmar su
           asistencia de forma individual.
         </p>
@@ -77,7 +76,7 @@ export const Rsvp = () => {
         <Link href="#rsvp-form">
           <Image
             className="w-8 h-8 cursor-pointer animate-bounce-arrow md:w-10 md:h-10"
-            src="https://res.cloudinary.com/db03kvlju/image/upload/v1741450513/straight_24dp_C78665_FILL0_wght400_GRAD0_opsz24_aj8nzy.svg"
+            src="https://res.cloudinary.com/db03kvlju/image/upload/v1741608395/chevron_right_24dp_C78665_FILL0_wght400_GRAD0_opsz24_yrgpy8.svg"
             alt="Down arrow"
             width={50}
             height={50}
@@ -86,9 +85,9 @@ export const Rsvp = () => {
       </div>
       <div
         id="rsvp-form"
-        className="flex items-center justify-center w-full mx-auto md:w-1/2 mt-28"
+        className="flex items-center justify-center w-full mx-auto xl:w-1/2 mt-28"
       >
-        <div className="max-w-[400px]">
+        <div className="xl:max-w-[400px]">
           {sbumission ? (
             <div className="leading-normal text-center uppercase text-terra">
               {rsvpPayload.willAttend
@@ -133,20 +132,20 @@ export const Rsvp = () => {
                 </label>
                 <div className="flex w-full gap-x-4">
                   <div
-                    className={`w-1/2 p-4 bg-white border-4 cursor-pointer font-sansLight flex justify-center items-center ${
+                    className={`w-1/2 text-[18px] border-terra-100 p-4 border cursor-pointer font-sansLight flex justify-center items-center ${
                       rsvpPayload.willAttend !== null && rsvpPayload.willAttend
-                        ? "border-terra"
-                        : "border-white"
+                        ? "bg-terra text-white font-sansMed"
+                        : "bg-white"
                     }`}
                     onClick={() => handleAssistance(true)}
                   >
                     Ahí estaré!
                   </div>
                   <div
-                    className={`w-1/2 p-4 bg-white border-4 cursor-pointer font-sansLight flex justify-center items-center ${
+                    className={`w-1/2 text-[18px] border-terra-100 p-4 border cursor-pointer font-sansLight flex justify-center items-center ${
                       rsvpPayload.willAttend !== null && !rsvpPayload.willAttend
-                        ? "border-terra"
-                        : "border-white"
+                        ? "bg-terra text-white font-sansMed"
+                        : "bg-white"
                     }`}
                     onClick={() => handleAssistance(false)}
                   >

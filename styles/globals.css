@@ -176,12 +176,11 @@ p {
 
   0%,
   100% {
-    transform: rotate(180deg) translateY(0);
+    transform: rotate(90deg) translateX(0);
   }
 
   50% {
-    transform: rotate(180deg) translateY(-10px);
-    /* Ajusta la distancia del rebote aquí */
+    transform: rotate(90deg) translateX(-10px);
   }
 }
 
@@ -191,20 +190,16 @@ p {
 
 .nav-link {
   position: relative;
-  /* Prevent underline overflow */
 }
 
 .nav-link::after {
   content: "";
   position: absolute;
   bottom: -5px;
-  /* Adjust as needed */
   left: 0;
   width: 0;
   height: 1px;
-  /* Adjust underline thickness */
   background-color: #594435;
-  /* Adjust underline color */
   transition: width 0.2s ease-in-out;
 }
 
