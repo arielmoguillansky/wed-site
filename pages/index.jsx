@@ -82,9 +82,21 @@ export default function Home({ weatherData }) {
             preload="auto"
             loop
             src={
-              "https://res.cloudinary.com/db03kvlju/video/upload/v1740655368/02cb7c74-bbc9-41b7-94a5-4f8c9e8d6008_mtmo7w_vqsbdm.mov"
+              "https://res.cloudinary.com/db03kvlju/video/upload/v1741620480/WhatsApp_Video_2025-03-10_at_12.23.48_gdkoxu.mp4"
             }
-            className="object-cover object-center absolute inset-x-0 top-1/2 -translate-y-1/2 h-[inherit] w-[inherit]"
+            className="hidden md:block object-cover object-left absolute inset-x-0 top-1/2 -translate-y-1/2 h-[inherit] w-[inherit]"
+          />
+          <video
+            autoPlay
+            muted={true}
+            playsInline
+            controls={false}
+            preload="auto"
+            loop
+            src={
+              "https://res.cloudinary.com/db03kvlju/video/upload/v1741620486/WhatsApp_Video_2025-03-10_at_12.23.40_vvidbw.mp4"
+            }
+            className="md:hidden block object-cover object-left absolute inset-x-0 top-1/2 -translate-y-1/2 h-[inherit] w-[inherit]"
           />
         </div>
         <div className="z-10 px-4 md:px-12">
@@ -535,6 +547,15 @@ export default function Home({ weatherData }) {
             <p>
               Alias: <span className="font-semibold">LONJA.MARTES.CIFRA</span>
             </p>
+            <p>
+              CBU: <span className="font-semibold">0070702431004001562846</span>
+            </p>
+          </div>
+          <hr className="max-w-[640px] mx-auto w-full my-8 text-terra" />
+          <div className="max-w-[640px] mx-auto space-y-4">
+            <h4 className="mx-auto mb-8 w-fit">
+              <b>COP</b>
+            </h4>
             <p>
               CBU: <span className="font-semibold">0070702431004001562846</span>
             </p>

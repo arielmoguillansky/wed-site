@@ -35,6 +35,7 @@ export const Rsvp = () => {
         104: rsvpPayload.email,
         108: rsvpPayload.willAttend ? "Si" : "No",
         109: rsvpPayload.restrictions,
+        112: rsvpPayload.songs,
       }),
     })
       .then(() => setSubmission(true))
@@ -62,7 +63,7 @@ export const Rsvp = () => {
       </div>
       <div className="max-w-[720px] mx-auto place-items-center">
         <p className="md:text-[24px] text-[20px]">
-          Recorá que tenes tiempo hasta el <b>30 de Abril</b> para confirmar tu
+          Recordá que tenes tiempo hasta el <b>30 de Abril</b> para confirmar tu
           asistencia.
         </p>
         <br />
@@ -154,18 +155,33 @@ export const Rsvp = () => {
                 </div>
               </div>
               {rsvpPayload.willAttend && (
-                <div>
-                  <label className="uppercase text-terra">
-                    Restricciones alimentarias?
-                  </label>
-                  <input
-                    name="restrictions"
-                    type="text"
-                    className="w-full p-4 pb-2 pl-0 border-b-2 outline-none focus:outline-none border-b-terra text-terra placeholder:text-terra-100 placeholder:uppercase"
-                    placeholder="Ej. Vegetariano, Celíaco, etc."
-                    onChange={(e) => handleInputChange(e)}
-                  />
-                </div>
+                <>
+                  <div>
+                    <label className="uppercase text-terra">
+                      Restricciones alimentarias?
+                    </label>
+                    <input
+                      name="restrictions"
+                      type="text"
+                      className="w-full p-4 pb-2 pl-0 border-b-2 outline-none focus:outline-none border-b-terra text-terra placeholder:text-terra-100 placeholder:uppercase"
+                      placeholder="Ej. Vegetariano, Celíaco, etc."
+                      onChange={(e) => handleInputChange(e)}
+                    />
+                  </div>
+                  <div>
+                    <label className="uppercase text-terra">
+                      deja acá la/las canción/nes que no pueden faltar para
+                      verte en la pista de baile
+                    </label>
+                    <input
+                      name="songs"
+                      type="text"
+                      className="w-full p-4 pb-2 pl-0 border-b-2 outline-none focus:outline-none border-b-terra text-terra placeholder:text-terra-100 placeholder:uppercase"
+                      placeholder="Canción"
+                      onChange={(e) => handleInputChange(e)}
+                    />
+                  </div>
+                </>
               )}
 
               <button

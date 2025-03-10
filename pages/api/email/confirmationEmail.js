@@ -12,7 +12,7 @@ const handler = async (req, res) => {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: "Boda Lau & Ari <vercel@resend.dev>",
+      from: "Boda Lau & Ari <noreply@laurayariel.site>",
       to: formData.email,
       subject: "Confirmación de asistencia",
       react: formData.willAttend
@@ -21,7 +21,9 @@ const handler = async (req, res) => {
     });
 
     if (error) {
-      res.status(400).json({ message: `Email could not be sent: ${error}` });
+      res
+        .status(400)
+        .json({ message: `Email could not be sent: ${JSON.stringify(error)}` });
     }
 
     res.status(200).json({ message: "Email sent" });
