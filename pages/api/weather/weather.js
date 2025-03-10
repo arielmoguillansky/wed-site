@@ -5,7 +5,6 @@ const handler = async (req, res) => {
     );
 
     const data = await response.json();
-    console.log("HEREEE", data);
 
     res.status(200).json({ ...data });
   } catch (err) {
