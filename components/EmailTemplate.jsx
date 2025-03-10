@@ -14,7 +14,7 @@ export const ConfirmEmailTemplate = () => {
       </div>
       <div style={{ marginBottom: "24px" }}>
         <h4 style={{ color: "#C78665", fontSize: "20px", marginBottom: "8px" }}>
-          Hora: 14:30hs
+          Hora: 15:00hs
         </h4>
         <p style={{ fontSize: "14px" }}>
           ¡Recordá llegar a tiempo para no perderte ni un solo segundo de la
