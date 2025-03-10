@@ -13,7 +13,7 @@ const handler = async (req, res) => {
     const resend = new Resend(RESEND_API_KEY);
 
     resend.emails.send({
-      from: "Boda Lau & Ari <vercel@resend.dev>",
+      from: "Boda Lau & Ari <onboarding@resend.dev>",
       to: formData.email,
       subject: "Confirmación de asistencia",
       react: formData.willAttend
