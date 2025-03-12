@@ -260,3 +260,17 @@ p {
 .aspect-820-1242 {
   aspect-ratio: 828 / 1242;
 }
+.gradient-bg {
+  background: linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
+}
+
+.gradient-bg:hover {
+  animation: spin 1.4s ease infinite;
+
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
