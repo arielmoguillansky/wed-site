@@ -34,31 +34,6 @@
 }
 
 @font-face {
-<<<<<<< HEAD
-  font-family: "AphroditeText";
-  src: url("../public/fonts/aphrodite/AphroditeText.woff2") format("woff2"),
-    url("../public/fonts/aphrodite/AphroditeText.woff") format("woff"),
-    url("../public/fonts/aphrodite/AphroditeText.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "JosefinSansLight";
-  src: url("../public/fonts/josefin-sans/JosefinSans-Light.ttf")
-    format("truetype");
-}
-
-@font-face {
-  font-family: "JosefinSansMedium";
-  src: url("../public/fonts/josefin-sans/JosefinSans-Medium.ttf")
-    format("truetype");
-}
-
-body {
-  color: black;
-  background: white;
-  font-family: AphroditeText, Helvetica, sans-serif;
-  @apply bg-[#f8f5ed] text-[#362417];
-=======
   font-family: "josefinSansBold";
   src: url("../public/fonts/josefin-sans/JosefinSans-Bold.ttf")
     format("truetype");
@@ -284,5 +259,4 @@ p {
 
 .aspect-820-1242 {
   aspect-ratio: 828 / 1242;
->>>>>>> staging
 }
