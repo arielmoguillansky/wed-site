@@ -1,0 +1,7 @@
+@import "swiper/css/navigation";
+
+.swiper-button-next {
+  z-index: 50;
+  right: var(--swiper-navigation-sides-offset, -50px);
+
+}
