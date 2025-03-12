@@ -225,7 +225,7 @@ export default function Invitation() {
 export async function getStaticProps(context) {
   return {
     props: {
-      messages: null,
+      messages: (await import(`../lang/${context.locale}.json`)).default,
     },
   };
 }
