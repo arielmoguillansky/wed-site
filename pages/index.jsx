@@ -15,9 +15,11 @@ export default function Home({ weatherData }) {
   const [isNavSticky, setIsNavSticky] = useState(false); // Add state for sticky nav
   const [showDropdown, setShowDropdown] = useState(false); // Add state for sticky nav
   const [showModal, setShowModal] = useState(false); // Add state for sticky nav
+  const [hideModal, setHideModal] = useState(false); // Add state for sticky nav
   const [isClient, setIsClient] = useState(false);
   const headerRef = useRef(null); // Create a ref for the header
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [modalClosed, setModalClosed] = useState(false); // Track if user has explicitly closed the modal
 
   useEffect(() => {
     setIsClient(true);
@@ -46,8 +48,12 @@ export default function Home({ weatherData }) {
       // If we've scrolled past the header
       if (window.scrollY > headerHeight * 0.9) {
         setIsNavSticky(true);
-        setShowModal(true);
         setHasScrolled(true);
+
+        // Only show modal if user hasn't closed it already
+        if (!modalClosed) {
+          setShowModal(true);
+        }
       } else {
         setIsNavSticky(false);
         setHasScrolled(true);
@@ -63,18 +69,18 @@ export default function Home({ weatherData }) {
     return () => {
       window.removeEventListener("scroll", checkScrollPosition);
     };
-  }, [isClient]); // Depend on isClient so this only runs after client-side hydration
+  }, [isClient, modalClosed]); // Updated dependency array
 
-  // Then modify your existing IntersectionObserver useEffect:
+  // Update the IntersectionObserver useEffect similarly
   useEffect(() => {
-    // Only set up the observer if we've checked initial scroll position
     if (!hasScrolled) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsNavSticky(!entry.isIntersecting);
 
-        if (!entry.isIntersecting) {
+        // Only show modal if user hasn't closed it already
+        if (!entry.isIntersecting && !modalClosed) {
           setShowModal(true);
         }
 
@@ -95,7 +101,7 @@ export default function Home({ weatherData }) {
         observer.unobserve(headerRef.current);
       }
     };
-  }, [hasScrolled]); // Only run this effect after we've checked the initial scroll position
+  }, [hasScrolled, modalClosed]); // Updated dependency array
 
   const handleNavLink = (e, id) => {
     e.preventDefault();
@@ -629,7 +635,16 @@ export default function Home({ weatherData }) {
         Hecho con
         <Image src={"/images/hearth.svg"} width={28} height={28} />x Ari y Lau
       </footer>
-      <IgModal showModal={showModal} setShowModal={setShowModal} />
+      <IgModal
+        showModal={showModal && !modalClosed}
+        setShowModal={(value) => {
+          setShowModal(value);
+          // If modal is being closed by user action, set modalClosed to true
+          if (value === false) {
+            setModalClosed(true);
+          }
+        }}
+      />
     </>
   );
 }
