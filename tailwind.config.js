@@ -23,10 +23,6 @@ module.exports = {
         sansBold: ["josefinSansBold"],
         serif: ["AphroditeText"],
       },
-      fontFamily: {
-        sans: ["JosefinSansLight", "Arial", "sans-serif"],
-        medium: ["JosefinSansMedium"],
-      },
     },
   },
   plugins: [],
