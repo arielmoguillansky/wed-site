@@ -8,6 +8,7 @@ import MapBoxMap from "../components/MapBoxMap";
 import { Schedule } from "@/components/Schedule";
 import Link from "next/link";
 import ReactModal from "react-modal";
+import { IgModal } from "@/components/IgModal";
 
 export default function Home({ weatherData }) {
   const [wMood, setWMood] = useState(true);
@@ -38,6 +39,8 @@ export default function Home({ weatherData }) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
+        console.log(entry.isIntersecting);
+
         setIsNavSticky(!entry.isIntersecting);
         setShowDropdown(false);
         setShowModal(true);
@@ -70,10 +73,6 @@ export default function Home({ weatherData }) {
         target.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top: targetPosition, behavior: "smooth" });
     }
-  };
-
-  const handleModalClose = () => {
-    setShowModal(false);
   };
 
   if (!isClient) return null;
@@ -595,56 +594,7 @@ export default function Home({ weatherData }) {
         Hecho con
         <Image src={"/images/hearth.svg"} width={28} height={28} />x Ari y Lau
       </footer>
-      <ReactModal
-        closeTimeoutMS={200}
-        appElement={document?.body}
-        onRequestClose={handleModalClose}
-        isOpen={true}
-        shouldCloseOnEsc={true}
-        overlayClassName="ig-gallery-overlay"
-        className="shadow-sm ig-gallery-content"
-      >
-        <div
-          onClick={handleModalClose}
-          className="absolute cursor-pointer top-10 right-10"
-        >
-          <Image
-            src="https://res.cloudinary.com/db03kvlju/image/upload/v1740655344/close_24dp_5F6368_FILL0_wght400_GRAD0_opsz24_lsqovh_sdr2tg.svg"
-            alt="Icon close"
-            width={32}
-            height={32}
-            style={{ float: "left" }}
-          />
-        </div>
-        <span>
-          Queremos compartir nuestra aventura contigo. Síguenos y únete a esta
-          experiencia. Allí encontrarás todos los detalles de como estamos
-          viviendo esta etapa.{" "}
-        </span>
-        <span>¡No te lo pierdas!</span>
-        <div className="flex items-center justify-center gap-x-4">
-          <Link
-            className="relative flex items-center justify-center overflow-hidden rounded-full w-[138px] h-[138px] before:w-40 before:h-40 before:absolute  before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:z-10"
-            href="https://www.instagram.com/foreveerfused?igsh=cW9uejByNXo0Yzdy&utm_source=qr"
-            target="_blank"
-          >
-            <div
-              className="absolute flex items-center justify-center overflow-hidden rounded-full w-[138px] h-[138px] before:w-40 before:h-40 before:absolute  before:top-1/2 before:left-1/2 gradient-bg before:-translate-x-1/2 before:-translate-y-1/2 before:z-10"
-              href="https://www.instagram.com/foreveerfused?igsh=cW9uejByNXo0Yzdy&utm_source=qr"
-              target="_blank"
-            />
-            <div className="relative block w-32 h-32 overflow-hidden rounded-full">
-              <Image
-                src="https://res.cloudinary.com/db03kvlju/image/upload/v1741646513/WhatsApp_Image_2025-03-10_at_19.39.01_a2xvdz.jpg"
-                fill
-                style={{ objectFit: "cover", zIndex: 30 }}
-              />
-            </div>
-          </Link>
-
-          <span className="font-semibold text-[20px]">@foreveerfused</span>
-        </div>
-      </ReactModal>
+      <IgModal showModal={showModal} setShowModal={setShowModal} />
     </>
   );
 }

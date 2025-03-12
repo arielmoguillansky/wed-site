@@ -127,7 +127,7 @@ p {
   transform: translate(-50%, -50%);
   left: 50%;
   width: 500px;
-  height: 500px;
+  height: 400px;
 }
 
 .ig-gallery-content {
@@ -140,7 +140,7 @@ p {
   outline: none;
   padding: 32px 28px;
   width: 500px;
-  height: 500px;
+  height: 400px;
 }
 .hotel-gallery-overlay.ReactModal__Overlay {
   opacity: 0;
@@ -259,18 +259,4 @@ p {
 
 .aspect-820-1242 {
   aspect-ratio: 828 / 1242;
-}
-.gradient-bg {
-  background: linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
-}
-
-.gradient-bg:hover {
-  animation: spin 1.4s ease infinite;
-
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
