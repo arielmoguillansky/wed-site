@@ -223,8 +223,6 @@ export default function Invitation() {
 }
 
 export async function getStaticProps(context) {
-  console.log(context);
-  
   return {
     props: {
       messages: (await import(`../lang/${context.locale}.json`)).default,
