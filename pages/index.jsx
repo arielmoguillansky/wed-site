@@ -17,6 +17,7 @@ export default function Home({ weatherData }) {
   const [showModal, setShowModal] = useState(false); // Add state for sticky nav
   const [isClient, setIsClient] = useState(false);
   const headerRef = useRef(null); // Create a ref for the header
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -37,17 +38,51 @@ export default function Home({ weatherData }) {
   }, []);
 
   useEffect(() => {
+    // Function to check scroll position and update states
+    const checkScrollPosition = () => {
+      // Get the header element height
+      const headerHeight = headerRef.current?.offsetHeight || 0;
+
+      // If we've scrolled past the header
+      if (window.scrollY > headerHeight * 0.9) {
+        setIsNavSticky(true);
+        setShowModal(true);
+        setHasScrolled(true);
+      } else {
+        setIsNavSticky(false);
+        setHasScrolled(true);
+      }
+    };
+
+    // Check scroll position immediately to handle initial load state
+    checkScrollPosition();
+
+    // Also listen for scroll events to catch any changes
+    window.addEventListener("scroll", checkScrollPosition);
+
+    return () => {
+      window.removeEventListener("scroll", checkScrollPosition);
+    };
+  }, [isClient]); // Depend on isClient so this only runs after client-side hydration
+
+  // Then modify your existing IntersectionObserver useEffect:
+  useEffect(() => {
+    // Only set up the observer if we've checked initial scroll position
+    if (!hasScrolled) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        console.log(entry.isIntersecting);
-
         setIsNavSticky(!entry.isIntersecting);
+
+        if (!entry.isIntersecting) {
+          setShowModal(true);
+        }
+
         setShowDropdown(false);
-        setShowModal(true);
       },
       {
-        rootMargin: "100%", // Use the viewport as the root
-        threshold: 1, // Trigger when the entire header is out of view
+        rootMargin: "-10px",
+        threshold: 0.1,
       }
     );
 
@@ -60,7 +95,7 @@ export default function Home({ weatherData }) {
         observer.unobserve(headerRef.current);
       }
     };
-  }, []);
+  }, [hasScrolled]); // Only run this effect after we've checked the initial scroll position
 
   const handleNavLink = (e, id) => {
     e.preventDefault();
