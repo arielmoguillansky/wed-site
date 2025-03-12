@@ -7,7 +7,6 @@ export default function Invitation() {
   const router = useRouter();
   const { code: invCode } = router.query;
   const [guest, setGuest] = useState(null);
-  const t = useTranslations("InvitationPage");
 
   const guestList = [
     {
@@ -226,7 +225,7 @@ export default function Invitation() {
 export async function getStaticProps(context) {
   return {
     props: {
-      messages: (await import(`../lang/${context.locale}.json`)).default,
+      messages: null,
     },
   };
 }
