@@ -595,7 +595,7 @@ export default function Home({ weatherData }) {
         Hecho con
         <Image src={"/images/hearth.svg"} width={28} height={28} />x Ari y Lau
       </footer>
-      <ReactModal
+      {/* <ReactModal
         closeTimeoutMS={200}
         appElement={document?.body}
         onRequestClose={handleModalClose}
@@ -616,9 +616,30 @@ export default function Home({ weatherData }) {
             style={{ float: "left" }}
           />
         </div>
-        ¿Estás siguiendo a foreveerfused en Instagram? ¡No te pierdas las
-        últimas novedades!
-      </ReactModal>
+        <span>
+          Queremos compartir nuestra aventura contigo. Síguenos y únete a esta
+          experiencia. Allí encontrarás todos los detalles de como estamos
+          viviendo esta etapa.{" "}
+        </span>
+        <span>¡No te lo pierdas!</span>
+        <div className="flex items-center justify-center gap-x-4">
+          <Link
+            className="relative block w-40 h-40 overflow-hidden rounded-full before:w-40 before:h-40 before:absolute before:bg-terra before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:z-10"
+            href="https://www.instagram.com/foreveerfused?igsh=cW9uejByNXo0Yzdy&utm_source=qr"
+            target="_blank"
+          >
+            <div className="block w-32 h-32 overflow-hidden rounded-full">
+              <Image
+                src="https://res.cloudinary.com/db03kvlju/image/upload/v1741646513/WhatsApp_Image_2025-03-10_at_19.39.01_a2xvdz.jpg"
+                fill
+                style={{ objectFit: "cover", zIndex: 30 }}
+              />
+            </div>
+          </Link>
+
+          <span className="font-semibold text-[20px]">@foreveerfused</span>
+        </div>
+      </ReactModal> */}
     </>
   );
 }

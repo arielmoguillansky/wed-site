@@ -120,7 +120,7 @@ p {
 }
 
 .ig-gallery-overlay {
-  @apply bg-terra;
+  @apply bg-pearl bg-opacity-40 backdrop-blur-md;
   z-index: 50;
   position: fixed;
   top: 50%;
