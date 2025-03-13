@@ -3,11 +3,10 @@ import { MGallery, WGallery } from "@/components/FashionGallery";
 import { Gallery } from "@/components/Gallery";
 import { Rsvp } from "@/components/Rsvp";
 import Image from "next/image";
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MapBoxMap from "../components/MapBoxMap";
 import { Schedule } from "@/components/Schedule";
 import Link from "next/link";
-import ReactModal from "react-modal";
 import { IgModal } from "@/components/IgModal";
 
 export default function Home({ weatherData }) {
@@ -15,7 +14,6 @@ export default function Home({ weatherData }) {
   const [isNavSticky, setIsNavSticky] = useState(false); // Add state for sticky nav
   const [showDropdown, setShowDropdown] = useState(false); // Add state for sticky nav
   const [showModal, setShowModal] = useState(false); // Add state for sticky nav
-  const [hideModal, setHideModal] = useState(false); // Add state for sticky nav
   const [isClient, setIsClient] = useState(false);
   const headerRef = useRef(null); // Create a ref for the header
   const [hasScrolled, setHasScrolled] = useState(false);

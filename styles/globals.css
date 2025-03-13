@@ -245,10 +245,24 @@ p {
   }
 }
 
+@keyframes bounceArrowR {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-5px);
+  }
+}
 .animate-bounce-arrow {
   animation: bounceArrow 1s infinite ease-in-out;
 }
 
+.animate-bounce-arrow-right {
+  animation: bounceArrowR 2s infinite ease-in-out;
+}
 .nav-link {
   position: relative;
 }

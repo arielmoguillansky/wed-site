@@ -10,12 +10,14 @@
   },
   "InvitationPage": {
     "h1": "Para",
-    "h2": "En el día que cambia nuestra vida para siempre, queremos que estés con nosotros y nos acompañes a celebrar nuestro amor y nuestra unión.",
+    "h2": "En el día que cambia nuestra vida para siempre, queremos que estén con nosotros y nos acompañen a celebrar nuestro amor y nuestra unión.",
+    "h2_individual": "En el día que cambia nuestra vida para siempre, queremos que estés con nosotros y nos acompañes a celebrar nuestro amor y nuestra unión.",
     "h3": "Sábado 17 de mayo del 2025",
     "h4": "Participación presencial",
     "h5": "Participación virtual",
     "h6": "Próximamente link a la transmisión del evento",
-    "h7": "Mas información próximamente en nuestro sitio web.",
-    "h8": "¡Te esperamos!"
+    "h7": "Mas información en nuestro sitio web",
+    "h8": "¡Los esperamos!",
+    "h8_individual": "¡Te esperamos!"
   }
 }

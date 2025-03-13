@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -7,159 +8,203 @@ export default function Invitation() {
   const router = useRouter();
   const { code: invCode } = router.query;
   const [guest, setGuest] = useState(null);
+  const t = useTranslations("InvitationPage");
 
   const guestList = [
     {
       name: "Cesar",
       code: "cesar-munoz",
+      group: false,
     },
     {
       name: "Rene",
       code: "rene-jose",
+      group: false,
     },
     {
       name: "Alfredo",
       code: "alfredo-gesell",
+      group: false,
     },
     {
       name: "María Restrepo",
       code: "maria-restrepo",
+      group: false,
     },
     {
       name: "Tatiana Mejía",
       code: "tatiana-mejia",
+      group: false,
     },
     {
       name: "Carlos y Luz Ángela",
       code: "carlos-luz",
+      group: true,
     },
     {
       name: "Esteban",
       code: "esteban-benalcazar",
+      group: false,
     },
     {
       name: "Charles",
       code: "charles-munoz",
+      group: false,
     },
     {
       name: "Alba y Familia",
       code: "alba-flia",
+      group: true,
     },
     {
       name: "Marleni y Familia",
       code: "marleni-flia",
+      group: true,
     },
     {
       name: "Nicole",
       code: "nicole",
+      group: false,
     },
     {
       name: "Gregoria y Familia",
       code: "gregoria-flia",
+      group: true,
     },
     {
       name: "Edilma y Corina Klinger",
       code: "edilma-klinger",
+      group: true,
     },
     {
       name: "Ivan y Beauty Prieto",
       code: "ivan-beauty",
+      group: true,
     },
     {
       name: "Rodryceth y Claudia",
       code: "rodryceth-claudia",
+      group: true,
     },
     {
       name: "Sindy y Mario",
       code: "sindy-mario",
+      group: true,
     },
     {
       name: "Polo Hernán y Familia",
       code: "polo-hernan-flia",
+      group: true,
     },
     {
       name: "Marnin Medrano",
       code: "marnin-medrano",
+      group: false,
     },
     {
       name: "Mayra Medrano",
       code: "mayra-medrano",
+      group: false,
     },
     {
       name: "Matilde Mesa",
       code: "matilde-mesa",
+      group: false,
     },
     {
       name: "Julio Edgar",
       code: "julio-edgar",
+      group: false,
     },
     {
       name: "Carmen Eliza y Familia",
       code: "carmen-flia",
+      group: true,
     },
     {
       name: "Floralba Ríos",
       code: "floralba-rios",
+      group: false,
     },
     {
       name: "Ibeth Yesenia Ríos",
       code: "ibeth-yesenia",
+      group: false,
     },
     {
       name: "Martha Rentería y Familia",
       code: "martha-renteria",
+      group: true,
     },
     {
       name: "Luisa Marquinez",
       code: "luisa-marquinez",
+      group: false,
     },
     {
       name: "Familia Medrano",
       code: "familia-medrano",
+      group: true,
     },
     {
       name: "Kelly Polo",
       code: "kelly-polo",
+      group: true,
     },
     {
       name: "Stephanie Prieto",
       code: "tef-prieto",
+      group: false,
     },
     {
       name: "Diana Viera",
       code: "diana-viera",
+      group: false,
     },
     {
       name: "Chloe Chang",
       code: "chloe-chang",
+      group: false,
     },
     {
       name: "Daniel Guzmán",
       code: "daniel-guzman",
+      group: false,
     },
     {
       name: "Biunis Becerra",
       code: "biunis-becerra",
+      group: false,
     },
     {
       name: "Liliana Arizmendy",
       code: "liliana-arizmendy",
+      group: false,
     },
     {
       name: "Rita Palacio y Familia",
       code: "rita-palacio-flia",
+      group: true,
     },
     {
       name: "Yorladys Perez",
       code: "yorladys-perez",
+      group: false,
     },
     {
       name: "Rosamor Ríos",
       code: "rosamor-rios",
+      group: false,
     },
     {
       name: "Jennifer Arroyave",
       code: "jennifer-arroyave",
+      group: false,
+    },
+    {
+      name: "Jose H. Lopez",
+      code: "jose-lopez",
+      group: false,
     },
   ];
 
@@ -185,13 +230,13 @@ export default function Invitation() {
         <p className="font-sans text-[18px] mb-2">{t("h1")}</p>
         <p>{guest?.name}</p>
       </div>
-      <div className="font-sans text-center md:text-[24px] text-[18px]">
-        {t("h2")}
+      <div className="italic font-sansLight text-center md:text-[20px] text-[16px]">
+        {guest?.group ? t("h2") : t("h2_individual")}
       </div>
       <div className="flex flex-col items-center justify-center gap-y-6 text-[24px] md:text-[48px]">
-        <p>Laura Medrano</p>
-        <p className="mb-2 md:mb-12">&</p>
-        <p>Ariel Moguillansky</p>
+        <p className="font-serif">Laura Medrano</p>
+        <p className="mb-2 font-serif">&</p>
+        <p className="font-serif">Ariel Moguillansky</p>
       </div>
       <div className="font-sans text-[18px] md:text-[24px] text-center space-y-4">
         <p> {t("h3")}</p>
@@ -200,7 +245,10 @@ export default function Invitation() {
       <div className="flex flex-col items-center justify-center">
         <p className="md:text-[32px] text-[20px] mb-4">Palacio Sans Souci</p>
       </div>
-      <div className="flex flex-col items-center justify-center gap-y-6">
+      <div className="flex justify-center">
+        Participación presencial o virtual
+      </div>
+      {/* <div className="flex flex-col items-center justify-center gap-y-6">
         <div className="flex flex-col items-center justify-center">
           <p className="font-sans">{t("h4")}</p>
           <p className="font-sans text-[18px] md:text-[24px]">
@@ -212,12 +260,22 @@ export default function Invitation() {
           <p className="font-sans">{t("h5")}</p>
           <div className="font-sans italic text-center">{t("h6")}</div>
         </div>
-      </div>
+      </div> */}
       <div className="m-auto font-sans text-center">{t("h7")}</div>
-      <div className="m-auto font-medium text-center text-[18px]">
-        <Link href="https://www.laurayariel.site">www.laurayariel.site</Link>
+      <div className="m-auto font-medium text-center flex justify-center gap-x-4 items-center text-[20px]">
+        <Link className="text-terra" href="https://www.laurayariel.site">
+          www.laurayariel.site
+        </Link>
+        <Image
+          className="animate-bounce-arrow-right"
+          src="https://res.cloudinary.com/db03kvlju/image/upload/v1741903524/arrow_right_alt_24dp_C78665_FILL0_wght400_GRAD0_opsz24_rpewol.svg"
+          width={22}
+          height={22}
+        />
       </div>
-      <div className="text-center text-[24px]">{t("h8")}</div>
+      <div className="text-center text-[24px]">
+        {guest?.group ? t("h8") : t("h8_individual")}
+      </div>
     </main>
   );
 }
