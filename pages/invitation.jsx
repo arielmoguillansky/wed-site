@@ -206,6 +206,16 @@ export default function Invitation() {
       code: "jose-lopez",
       group: false,
     },
+    {
+      name: "Ezequiel Loza",
+      code: "ezequiel-loza",
+      group: false,
+    },
+    {
+      name: "Rodrigo R. Serfas",
+      code: "rodrigo-serfas",
+      group: false,
+    },
   ];
 
   useEffect(() => {
