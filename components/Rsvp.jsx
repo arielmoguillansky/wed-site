@@ -64,7 +64,7 @@ export const Rsvp = () => {
       <div className="max-w-[720px] mx-auto place-items-center">
         <p className="md:text-[24px] text-[20px]">
           Recordá que tenes tiempo hasta el <b>17 de Abril</b> para confirmar tu
-          asistencia.
+          asistencia - solo participación presencial.
         </p>
         <br />
         <p className="md:text-[24px] text-[20px]">
