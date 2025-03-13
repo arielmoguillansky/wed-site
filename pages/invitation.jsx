@@ -225,7 +225,7 @@ export default function Invitation() {
   }
 
   return (
-    <main className="p-12 md:space-y-16 space-y-8 max-w-[720px] m-auto">
+    <main className="p-12 md:space-y-16 space-y-8 max-w-[720px] m-auto h-dvh place-content-center">
       <div className="w-fit m-auto gap-y-6 text-[24px] md:text-[48px]">
         <p className="font-sans text-[18px] mb-2">{t("h1")}</p>
         <p>{guest?.name}</p>
