@@ -81,7 +81,7 @@ export const menCode = [
   },
   {
     id: 5,
-    src: "https://res.cloudinary.com/db03kvlju/image/upload/v1740656341/wedding-dress-codesmart-casual-gentel-suavebespoke_ws5abh.webp",
+    src: "https://res.cloudinary.com/db03kvlju/image/upload/v1742128765/Grey-2-1_n7dfcv.jpg",
   },
   {
     id: 6,
@@ -89,7 +89,7 @@ export const menCode = [
   },
   {
     id: 7,
-    src: "https://res.cloudinary.com/db03kvlju/image/upload/v1740656603/1_xlrbgg.jpg",
+    src: "https://res.cloudinary.com/db03kvlju/image/upload/v1742128799/Layer-19-3_oxlmai.jpg",
   },
   {
     id: 8,
