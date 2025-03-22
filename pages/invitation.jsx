@@ -242,7 +242,7 @@ export default function Invitation() {
       group: true,
     },
     {
-      name: "Familia Torino",
+      name: "Pablo, Sonia, Malena y Mateo",
       code: "familia-torino",
       group: true,
     },
