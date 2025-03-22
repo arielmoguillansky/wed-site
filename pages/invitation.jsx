@@ -232,6 +232,11 @@ export default function Invitation() {
       group: true,
     },
     {
+      name: "Valentina, Lucas y Vicenta",
+      code: "valentina-lucas-vicenta",
+      group: true,
+    },
+    {
       name: "Familia Greco",
       code: "familia-greco",
       group: true,
