@@ -92,8 +92,8 @@ export default function Invitation() {
       group: true,
     },
     {
-      name: "Polo Hernán y Familia",
-      code: "polo-hernan-flia",
+      name: "Polo, Lida y María Ángeles",
+      code: "polo-lida-maria",
       group: true,
     },
     {
