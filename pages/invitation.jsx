@@ -47,9 +47,9 @@ export default function Invitation() {
       group: false,
     },
     {
-      name: "Charles",
-      code: "charles-munoz",
-      group: false,
+      name: "Charles y Wilmary",
+      code: "charles-familia",
+      group: true,
     },
     {
       name: "Alba y Familia",
@@ -216,6 +216,11 @@ export default function Invitation() {
       code: "rodrigo-serfas",
       group: false,
     },
+    {
+      name: "Darío Muñoz",
+      code: "dario-munoz",
+      group: false,
+    },
   ];
 
   useEffect(() => {
@@ -255,8 +260,13 @@ export default function Invitation() {
       <div className="flex flex-col items-center justify-center">
         <p className="md:text-[32px] text-[20px] mb-4">Palacio Sans Souci</p>
       </div>
-      <div className="flex justify-center">
-        Participación presencial o virtual
+      <div className="text-center">
+        Esta es una invitación{" "}
+        <span className="text-terra">
+          {guest?.group ? "familiar" : "individual"}
+        </span>{" "}
+        para la participación <span className="text-terra">presencial</span> o{" "}
+        <span className="text-terra">virtual</span> de la boda de Laura y Ariel.
       </div>
       {/* <div className="flex flex-col items-center justify-center gap-y-6">
         <div className="flex flex-col items-center justify-center">
