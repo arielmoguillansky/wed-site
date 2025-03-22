@@ -9,13 +9,15 @@
     "seconds": "seconds"
   },
   "InvitationPage": {
-    "h1": "For",
-    "h2": "On the day that changes our lives forever, we want you to be with us and join us in celebrating our love and union.",
+    "h1": "To",
+    "h2": "On the day that changes our lives forever, we want you to be with us and join us in celebrating our love and our union.",
+    "h2_individual": "On the day that changes our lives forever, we want you to be with us and join us in celebrating our love and our union.",
     "h3": "Saturday, May 17th, 2025",
     "h4": "In-person participation",
     "h5": "Virtual participation",
-    "h6": "Link to the event's live stream coming soon",
-    "h7": "More information coming soon on our website.",
-    "h8": "We can't wait to see you!"
+    "h6": "Event streaming link coming soon",
+    "h7": "Confirm your attendance on our website",
+    "h8": "We'll be waiting for you!",
+    "h8_individual": "We'll be waiting for you!"
   }
 }

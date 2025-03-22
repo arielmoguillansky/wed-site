@@ -268,19 +268,6 @@ export default function Invitation() {
         para la participación <span className="text-terra">presencial</span> o{" "}
         <span className="text-terra">virtual</span> de la boda de Laura y Ariel.
       </div>
-      {/* <div className="flex flex-col items-center justify-center gap-y-6">
-        <div className="flex flex-col items-center justify-center">
-          <p className="font-sans">{t("h4")}</p>
-          <p className="font-sans text-[18px] md:text-[24px]">
-            Paz 750, Victoria
-          </p>
-          <p className="font-sans text-[18px] md:text-[24px]">Buenos Aires</p>
-        </div>
-        <div className="flex flex-col items-center justify-center">
-          <p className="font-sans">{t("h5")}</p>
-          <div className="font-sans italic text-center">{t("h6")}</div>
-        </div>
-      </div> */}
       <div className="m-auto font-sans text-center">{t("h7")}</div>
       <div className="m-auto font-medium text-center flex justify-center gap-x-4 items-center text-[20px]">
         <Link className="text-terra" href="https://www.laurayariel.site">
