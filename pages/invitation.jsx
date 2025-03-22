@@ -221,6 +221,26 @@ export default function Invitation() {
       code: "dario-munoz",
       group: false,
     },
+    {
+      name: "Carlos y Carolina",
+      code: "familia-losada",
+      group: true,
+    },
+    {
+      name: "Familia Martínez",
+      code: "familia-martinez",
+      group: true,
+    },
+    {
+      name: "Familia Greco",
+      code: "familia-greco",
+      group: true,
+    },
+    {
+      name: "Familia Torino",
+      code: "familia-torino",
+      group: true,
+    },
   ];
 
   useEffect(() => {
