@@ -246,6 +246,11 @@ export default function Invitation() {
       code: "familia-torino",
       group: true,
     },
+    {
+      name: "Aureliano Palacios",
+      code: "aureliano-palacios",
+      group: false,
+    },
   ];
 
   useEffect(() => {
