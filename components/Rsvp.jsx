@@ -64,12 +64,16 @@ export const Rsvp = () => {
       <div className="max-w-[720px] mx-auto place-items-center">
         <p className="md:text-[24px] text-[20px]">
           Recordá que tenes tiempo hasta el <b>17 de Abril</b> para confirmar tu
-          asistencia - solo participación presencial.
+          asistencia -{" "}
+          <b>
+            solo es necesario registrarse si asistirás al evento de forma
+            presencial.
+          </b>
         </p>
         <br />
         <p className="md:text-[24px] text-[20px]">
-          En un grupo familiar, cada integrante invitado deberá confirmar su
-          asistencia de forma individual.
+          ¡IMPORTANTE! - En un grupo familiar, cada integrante invitado deberá
+          confirmar su asistencia de forma individual.
         </p>
         <p className="text-terra md:text-[48px] text-[32px] text-center font-sansLightItalic my-10">
           Tu presencia es nuestro mayor regalo. Anotate!

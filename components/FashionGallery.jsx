@@ -28,7 +28,7 @@ export const WGallery = () => {
           />
         </div>
         <span className="hidden md:block absolute font-sansLight italic md:text-[18px] xl:text-[20px] md:top-16 md:-right-48 xl:top-32 xl:-right-52">
-          Te damos ideas <br /> para que te insipires!
+          Te damos ideas <br /> para que te inspires!
         </span>
         {showNextArrow && (
           <div
@@ -107,7 +107,7 @@ export const MGallery = () => {
           />
         </div>
         <span className="hidden md:block absolute font-sansLight italic md:text-[18px] xl:text-[20px] md:top-16 md:-right-48 xl:top-32 xl:-right-52">
-          Te damos ideas <br /> para que te insipires!
+          Te damos ideas <br /> para que te inspires!
         </span>
         {showNextArrow && (
           <div

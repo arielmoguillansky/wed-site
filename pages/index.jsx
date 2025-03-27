@@ -471,7 +471,10 @@ export default function Home({ weatherData }) {
                   <div className="p-4 mt-4 border border-terra">
                     <h4 className="mb-4">PARA ELLAS</h4>
                     <p className="text-[18px] mb-4">
-                      Un vestido de cóctel o un traje pantalón/falda larga
+                      Un vestido{" "}
+                      <span className="italic font-bold text-terra">largo</span>{" "}
+                      de cóctel o un traje pantalón/falda{" "}
+                      <span className="italic font-bold text-terra">larga</span>{" "}
                       elegante
                     </p>
                     <p className="text-[18px] mb-8 md:mb-4">
