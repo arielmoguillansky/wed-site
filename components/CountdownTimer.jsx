@@ -32,7 +32,7 @@ function CountdownTimer() {
       const mins = Math.floor((difference / 1000 / 60) % 60);
       const segs = Math.floor((difference / 1000) % 60);
 
-      timeLeft = { meses, dias, hrs, mins, segs };
+      timeLeft = { dias, hrs, mins, segs };
     }
 
     return timeLeft;
