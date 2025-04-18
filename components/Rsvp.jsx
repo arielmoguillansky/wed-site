@@ -62,14 +62,14 @@ export const Rsvp = () => {
         </p>
       </div>
       <div className="max-w-[720px] mx-auto place-items-center">
-        <p className="md:text-[24px] text-[20px]">
+        {/* <p className="md:text-[24px] text-[20px]">
           Recordá que tenes tiempo hasta el <b>17 de Abril</b> para confirmar tu
           asistencia -{" "}
           <b>
             solo es necesario registrarse si asistirás al evento de forma
             presencial.
           </b>
-        </p>
+        </p> */}
         <br />
         <p className="md:text-[24px] text-[20px]">
           ¡IMPORTANTE! - En un grupo familiar, cada integrante invitado deberá
