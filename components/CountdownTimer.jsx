@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 const deadline = new Date("2025-05-17T14:30:00");
 
-const INITIAL_TIME_LEFT = { meses: 0, días: 0, hrs: 0, mins: 0, segs: 0 };
+const INITIAL_TIME_LEFT = { días: 0, hrs: 0, mins: 0, segs: 0 };
 
 function CountdownTimer() {
   const [timeLeft, setTimeLeft] = useState(INITIAL_TIME_LEFT);
@@ -24,8 +24,8 @@ function CountdownTimer() {
     let difference = deadline.getTime() - currentDate.getTime();
 
     if (difference > 0) {
-      const meses = Math.floor(difference / (1000 * 60 * 60 * 24 * 30));
-      difference -= meses * (1000 * 60 * 60 * 24 * 30);
+      // const meses = Math.floor(difference / (1000 * 60 * 60 * 24 * 30));
+      // difference -= meses * (1000 * 60 * 60 * 24 * 30);
 
       const dias = Math.floor(difference / (1000 * 60 * 60 * 24));
       const hrs = Math.floor((difference / (1000 * 60 * 60)) % 24);
