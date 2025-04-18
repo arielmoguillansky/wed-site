@@ -427,7 +427,7 @@ export default function Home({ weatherData }) {
           id="dress-code"
           className="mb-28 md:mb-40 px-4 w-full md:px-8 xl:lg:max-w-[720px] xl:max-w-[1300px] mx-auto"
         >
-          <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] mb-8 md:mb-0 text-center font-sansLight">
+          <h2 className="uppercase md:text-[48px] xl:text-[60px] text-[32px] mb-8 text-center font-sansLight">
             Código de vestimenta
           </h2>
           <h2 className="md:text-[32px] xl:text-[40px] text-[28px] mb-14 leading-none font-serif italic flex justify-center">
