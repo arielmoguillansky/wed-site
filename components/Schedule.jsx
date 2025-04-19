@@ -44,39 +44,44 @@ const scheduleData = [
     width: 200,
   },
 ];
-export const Schedule = () => scheduleData.map((item, index) => (
-  <div
-    key={`agenda-${index}`}
-    className={`relative flex ${
-      index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-    } justify-center gap-x-[60px] pb-40 last:pb-0`}
-  >
+export const Schedule = () =>
+  scheduleData.map((item, index) => (
     <div
-      className={`absolute md:-top-8 -top-4 ${
-        index % 2 === 0 ? "md:right-[55%] right-[60%]" : "md:left-[55%] left-[60%]"
-      }`}
+      key={`agenda-${index}`}
+      className={`relative flex ${
+        index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+      } justify-center gap-x-[60px] pb-40 last:pb-0`}
     >
-      <Image
-        src={item.icon}
-        alt="Picture of the author"
-        width={item.width || 200}
-        height={200}
-        style={{ float: "right" }}
-      />
+      <div
+        className={`absolute md:-top-8 -top-4 ${
+          index % 2 === 0
+            ? "md:right-[55%] right-[60%]"
+            : "md:left-[55%] left-[60%]"
+        }`}
+      >
+        <Image
+          src={item.icon}
+          alt="Picture of the author"
+          width={item.width || 200}
+          height={200}
+          style={{ float: "right" }}
+        />
+      </div>
+      {index === scheduleData.length - 1 ? null : (
+        <div className="absolute w-1 h-full bg-softBlue" />
+      )}
+      <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
+      <div
+        className={`max-w-[400px] absolute ${
+          index % 2 === 0
+            ? "md:left-[55%] left-[60%]"
+            : "md:right-[55%] right-[56%]"
+        }`}
+      >
+        <h3 className="text-lg uppercase lg:text-xl">{item.title}</h3>
+        <p className="mb-2 text-lg lg:text-2xl text-terra font-sansLightItalic">
+          {item.place}
+        </p>
+      </div>
     </div>
-    {index === scheduleData.length - 1 ? null : (
-      <div className="absolute w-1 h-full bg-softBlue" />
-    )}
-    <div className="relative w-6 h-6 before:absolute before:rounded-full before:content-[''] before:top-0 before:w-6 before:h-6 before:bg-softBlue" />
-    <div
-      className={`max-w-[400px] absolute ${
-        index % 2 === 0 ? "md:left-[55%] left-[60%]" : "md:right-[55%] right-[56%]"
-      }`}
-    >
-      <h3 className="text-lg uppercase">{item.title}</h3>
-      <p className="mb-2 text-lg text-terra font-sansLightItalic">
-        {item.place}
-      </p>
-    </div>
-  </div>
-))
+  ));

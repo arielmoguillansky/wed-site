@@ -636,7 +636,7 @@ export default function Home({ weatherData }) {
         Hecho con
         <Image src={"/images/hearth.svg"} width={28} height={28} />x Ari y Lau
       </footer>
-      <IgModal
+      {/* <IgModal
         showModal={showModal && !modalClosed}
         setShowModal={(value) => {
           setShowModal(value);
@@ -645,7 +645,7 @@ export default function Home({ weatherData }) {
             setModalClosed(true);
           }
         }}
-      />
+      /> */}
     </>
   );
 }

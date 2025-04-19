@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       colors: {
         brown: "#594435",
-        terra: "#c78665",
+        terra: "#c96532",
         "terra-100": "#e6cabb",
         pearl: "#dedee1",
         gray: "#818491",

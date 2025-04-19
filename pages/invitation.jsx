@@ -251,6 +251,11 @@ export default function Invitation() {
       code: "aureliano-palacios",
       group: false,
     },
+    {
+      name: "Ana, Olga y Ramón",
+      code: "flia-ludueña",
+      group: true,
+    },
   ];
 
   useEffect(() => {

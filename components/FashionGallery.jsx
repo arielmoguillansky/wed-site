@@ -19,7 +19,7 @@ export const WGallery = () => {
   return (
     <>
       <div className="relative">
-        <div className="absolute z-10 transform rotate-90 xl:w-20 xl:h-16 md:w-16 md:h-12 md:-right-14 md:top-24 xl:-right-20 xl:top-1/4">
+        <div className="absolute z-10 transform rotate-90 xl:w-20 xl:h-16 md:w-16 md:h-12 md:-right-14 md:top-24 xl:-right-20 lg:top-14 xl:top-1/4">
           <Image
             src="https://res.cloudinary.com/db03kvlju/image/upload/v1740655343/683956_1_sewwdw_rqwouo.svg"
             alt="Arrow"
@@ -27,7 +27,7 @@ export const WGallery = () => {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <span className="hidden md:block absolute font-sansLight italic md:text-[18px] xl:text-[20px] md:top-16 md:-right-48 xl:top-32 xl:-right-52">
+        <span className="hidden md:block absolute font-sansLight italic md:text-[18px] xl:text-[20px] md:top-16 lg:top-[30px] md:-right-48 xl:top-[80px] xl:-right-52">
           Te damos ideas <br /> para que te inspires!
         </span>
         {showNextArrow && (
@@ -98,15 +98,15 @@ export const MGallery = () => {
   return (
     <>
       <div className="relative">
-        <div className="absolute z-10 transform rotate-90 xl:w-20 xl:h-16 md:w-16 md:h-12 md:-right-14 md:top-24 xl:-right-20 xl:top-1/4">
+        <div className="absolute z-10 transform rotate-90 xl:w-20 xl:h-16 md:w-16 md:h-12 md:-right-14 md:top-24 lg:top-14 xl:-right-20 xl:top-1/4">
           <Image
-            src="https://res.cloudinary.com/dwinoepzp/image/upload/v1737495095/wed/683956_1_sewwdw.svg"
+            src="https://res.cloudinary.com/db03kvlju/image/upload/v1740655343/683956_1_sewwdw_rqwouo.svg"
             alt="Arrow"
             fill
             style={{ objectFit: "cover" }}
           />
         </div>
-        <span className="hidden md:block absolute font-sansLight italic md:text-[18px] xl:text-[20px] md:top-16 md:-right-48 xl:top-32 xl:-right-52">
+        <span className="hidden md:block absolute font-sansLight italic md:text-[18px] xl:text-[20px] md:top-16 lg:top-[30px] md:-right-48 xl:top-[80px] xl:-right-52">
           Te damos ideas <br /> para que te inspires!
         </span>
         {showNextArrow && (
